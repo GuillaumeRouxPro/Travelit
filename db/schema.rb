@@ -10,9 +10,59 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_16_193736) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_17_085955) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bookings", force: :cascade do |t|
+    t.date "date"
+    t.boolean "confirmation"
+    t.bigint "user_id", null: false
+    t.bigint "tour_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tour_id"], name: "index_bookings_on_tour_id"
+    t.index ["user_id"], name: "index_bookings_on_user_id"
+  end
+
+  create_table "hobbies", force: :cascade do |t|
+    t.string "name"
+    t.string "icon"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.text "comment"
+    t.integer "rating"
+    t.bigint "user_id", null: false
+    t.bigint "booking_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["booking_id"], name: "index_reviews_on_booking_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
+  create_table "tours", force: :cascade do |t|
+    t.text "name"
+    t.string "city"
+    t.text "description"
+    t.integer "price"
+    t.integer "number_of_travlers"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_tours_on_user_id"
+  end
+
+  create_table "user_hobbies", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "hobby_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hobby_id"], name: "index_user_hobbies_on_hobby_id"
+    t.index ["user_id"], name: "index_user_hobbies_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -28,4 +78,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_16_193736) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "bookings", "tours"
+  add_foreign_key "bookings", "users"
+  add_foreign_key "reviews", "bookings"
+  add_foreign_key "reviews", "users"
+  add_foreign_key "tours", "users"
+  add_foreign_key "user_hobbies", "hobbies"
+  add_foreign_key "user_hobbies", "users"
 end
