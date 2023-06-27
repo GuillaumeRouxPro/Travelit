@@ -1,0 +1,125 @@
+<div class="container mt-4">
+
+  <div class="row">
+    <div class="col-md-8 mb-3">
+      <h1>Les tours proposés <small>(<%= @tours.size %>)</small></h1>
+    </div>
+  </div>
+
+  <div class="row">
+
+    <div class=" col col-md-8 ">
+
+      <div class="d-flex align-items-stretch">
+        <div class="cards">
+          <% @tours.each_with_index do |tour, index| %>
+            <div class="card card-tour">
+              <div class="card-img-top">
+                <div id=<%= "carouselExampleIndicators#{index}" %> class="carousel slide" data-bs-ride=<%= "carouselExampleIndicators#{index}" %>>
+                  <ol class="carousel-indicators">
+                    <% flat.photos.each_with_index do |photo, index2| %>
+                      <li data-bs-target=<%= "#carouselExampleIndicators#{index}" %> data-bs-slide-to="<%= index2 %>" <% if index2 == 0 %>class="active"<% end %>></li>
+                    <% end %>
+                  </ol>
+                  <div class="carousel-inner">
+                    <% tour.photos.each_with_index do |photo, index2| %>
+                      <div class="carousel-item <% if index2 == 0 %>active<% end %>">
+                        <%= cl_image_tag photo.key, class: "d-block w-100", height: 180, crop: :thumb %>
+                      </div>
+                    <% end %>
+                  </div>
+                  <a class="carousel-control-prev" href=<%= "#carouselExampleIndicators#{index}" %> role="button" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                  <a class="carousel-control-next" href=<%= "#carouselExampleIndicators#{index}" %> role="button" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                  </a>
+                </div>
+              </div>
+
+              <div class="card-body px-3">
+                <div class="card-title d-flex justify-content-between" style="height: 3em">
+                <div>
+                  <%= link_to tour.name, tour_path(tour), class: "text-decoration-none text-bold link-dark" %>
+                </div>
+                <div class="text-12 d-flex align-items-center">
+                <% if tour.reviews.average(:rating) != nil  %>
+                  <i class="fa-solid fa-star mx-2"></i>
+                  <%= number_with_precision(tour.reviews.average(:rating), precision: 2) %>
+                  <% end %>
+                </div>
+                </div>
+                <div class="d-flex align-items-start flex-column bd-highlight" style="height: 50px;">
+                <div class="bd-highlight mb-0 text-12 text-gray">
+                  <% if tour.description.length > 70 %>
+                    <%= tour.description[0..70] %>...
+                  <% else %>
+                    <%= tour.description %>
+                  <% end %>
+                </div>
+                </div>
+                  <div class="d-flex justify-content-between align-items-center">
+                  <div class="text-12">
+                    <%= tour.price_per_night %> € le tour
+                  </div>
+                  <div>
+                    <% if policy(tour).edit? && policy(tour).destroy? %>
+                      <%= link_to "<i class='fa-solid fa-pen-to-square'></i>".html_safe,
+                        edit_tour_path(tour),
+                        class: "text-decoration-none link-dark"
+                      %>
+                      <%= link_to "<i class='fa-solid fa-trash-can' style='color: #ff2600;'></i>".html_safe,
+                        tour_path(tour),
+                        class: "text-decoration-none link-dark",
+                        data: {turbo_method: :delete, turbo_confirm: "Confirmer la suppression ?"}
+                      %>
+                    <% end %>
+                  </div>
+                  </div>
+              </div>
+
+
+
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+
+      <div class="row justify-content-center border mb-4 card-airbnb" data-controller = "hide-customer-slider">
+          <h4 class="my-3"><i class="fa-solid fa-umbrella-beach text-success"></i> Vivez une expérience unique. </h4>
+          <%= simple_form_for :tour, url: tours_path, method: :get do |form| %>
+          <%= form.input :lieu,
+            label: false,
+            input_html: {data: {address_autocomplete_target: "address", hide_customer_slider_target: "address", action: "input->hide-customer-slider#hideCustomerSlider"}, class: "d-none"},
+            wrapper_html: {data: {controller: "address-autocomplete",
+            address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}
+          %>
+            <%= form.hidden_field :range, id: "range-input" %>
+
+              <div class="px-2 mb-0 text-gray">
+              Rayon de la recherche (km)
+              </div>
+                <div id="slider" data-controller="slider" class="m-3 mb-4">
+                  <div id="custom-handle" data-hide-customer-slider-target="slider" class="ui-slider-handle"></div>
+                </div>
+            <%= form.submit "Rechercher", class: "btn btn-primary btn-block mb-3", style: "width:100%;" %>
+          <% end %>
+      </div>
+      <div class="row justify-content-center border mb-4 card-airbnb">
+        <div class="p-3">
+          <div style="width: 100%; height: 600px; position:sticky; top: 0;"
+              data-controller="map"
+              data-map-markers-value="<%= @markers.to_json %>"
+              data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
