@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     member do
       patch 'accept'
       patch 'refuse'
+      post 'chat', on: :collection
     end
     resources :reviews, only: [:new, :create]
   end

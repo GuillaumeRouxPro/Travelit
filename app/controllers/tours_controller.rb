@@ -7,4 +7,9 @@ class ToursController < ApplicationController
   def index
     @tours = policy_scope(Tour)
   end
+
+  def search
+    @tours = Tour.search(params[:hobbies], params[:city], params[:date], params[:num_travelers])
+  end
+
 end

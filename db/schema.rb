@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema[7.0].define(version: 2023_06_29_132842) do
+=======
+ActiveRecord::Schema[7.0].define(version: 2023_06_29_130911) do
+>>>>>>> 552a279243c3b56097aeabb3e48b11c3ffa86519
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -51,6 +55,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_29_132842) do
     t.datetime "updated_at", null: false
     t.date "start_date"
     t.date "end_date"
+    t.string "status"
     t.index ["tour_id"], name: "index_bookings_on_tour_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
   end
