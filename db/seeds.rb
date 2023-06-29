@@ -6,48 +6,34 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
+require 'faker'
 
-#USERS SEEDS
-puts "Destroying users..."
-User.destroy_all
-puts "Creating user..."
-User.create!(
-  email: "michel@hotmail.fr",
-  encrypted_password: "123456"
-  first_name: "Michel"
-  last_name: "Aulas"
-)
-User.create!(
-  email: "guillaume@hotmail.fr",
-  encrypted_password: "123456"
-  first_name: "Guillaume"
-  last_name: "Roux"
-)
-puts "Finished create users!"
+# Création de 10 utilisateurs fictifs
+10.times do
+  User.create!(
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    email: Faker::Internet.email,
+    password: '123456' # Vous pouvez définir un mot de passe par défaut pour les utilisateurs fictifs
+  )
+end
 
-#HOBBIES SEEDS
-puts "Destroying Hobbies..."
-Hobby.destroy_all
-puts "Creating Hobbies..."
-Hobby.create!(
-  name: "Football",
-)
-Hobby.create!(
-  name: "Tennis",
-)
-puts "Finished create Hobbies!"
+puts 'Faux utilisateurs créés !'
 
+# Crée 10 faux tours
+10.times do
+  tour = Tour.new(
+    name: Faker::Lorem.word,
+    city: Faker::Address.city,
+    description: Faker::Lorem.paragraph,
+    price: Faker::Number.between(from: 10, to: 100),
+    number_of_travlers: Faker::Number.between(from: 1, to: 5),
+    user_id: User.pluck(:id).sample
+  )
 
-#REVIEWS SEEDS
-puts "Destroying Reviews..."
-Review.destroy_all
-puts "Creating Reviews..."
-Review.create!(
-  comment: "Super tour !",
-  rating: 5,
-)
-Review.create!(
-  comment: "Nice tour !",
-  rating: 3,
-)
-puts "Finished create Reviews!"
+  # Ajoute une photo au tour
+  file = URI.open('https://www.autour-dumonde.fr/sx-content/uploads/cms/img-presentation-1.jpg') # Remplacez l'URL par l'URL de votre photo
+  tour.photos.attach(io: file, filename: 'photo.jpg')
+
+  tour.save!
+end
