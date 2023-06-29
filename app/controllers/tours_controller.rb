@@ -96,4 +96,9 @@ class ToursController < ApplicationController
   def params_tour
     params.require(:tour).permit(:name, :address, :description, :price, :number_of_guests, hobby_ids: [], photos: [])
   end
+
+  def search
+    @tours = Tour.search(params[:hobbies], params[:city], params[:date], params[:num_travelers])
+  end
+
 end
