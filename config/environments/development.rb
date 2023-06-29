@@ -1,12 +1,6 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
-  config.active_storage.service = :local
-
-  config.after_initialize do
-    ActiveStorage::Current.host = 'localhost:3000' # Remplacez par l'URL de votre application
-    ActiveStorage::Current.url_options = { host: ActiveStorage::Current.host, only_path: false }
-  end
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded any time

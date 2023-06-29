@@ -4,38 +4,3 @@
 2023-06-16 20:39:41.273 CEST [8973] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
 2023-06-16 20:39:41.276 CEST [8974] LOG:  database system was shut down at 2023-06-16 20:39:25 CEST
 2023-06-16 20:39:41.278 CEST [8973] LOG:  database system is ready to accept connections
-2023-06-29 14:26:18.715 CEST [9250] LOG:  starting PostgreSQL 14.8 (Homebrew) on x86_64-apple-darwin22.4.0, compiled by Apple clang version 14.0.3 (clang-1403.0.22.14.1), 64-bit
-2023-06-29 14:26:18.717 CEST [9250] LOG:  listening on IPv6 address "::1", port 5432
-2023-06-29 14:26:18.717 CEST [9250] LOG:  listening on IPv4 address "127.0.0.1", port 5432
-2023-06-29 14:26:18.718 CEST [9250] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
-2023-06-29 14:26:18.721 CEST [9251] LOG:  database system was shut down at 2023-06-29 14:26:02 CEST
-2023-06-29 14:26:18.723 CEST [9250] LOG:  database system is ready to accept connections
-2023-06-29 14:26:34.617 CEST [9836] FATAL:  database "Travelit_development" does not exist
-2023-06-29 14:26:35.334 CEST [9838] FATAL:  database "Travelit_development" does not exist
-2023-06-29 14:26:36.466 CEST [9840] FATAL:  database "Travelit_development" does not exist
-2023-06-29 15:24:27.722 CEST [16673] ERROR:  relation "active_storage_attachments" does not exist at character 491
-2023-06-29 15:24:27.722 CEST [16673] STATEMENT:  SELECT a.attname, format_type(a.atttypid, a.atttypmod),
-	       pg_get_expr(d.adbin, d.adrelid), a.attnotnull, a.atttypid, a.atttypmod,
-	       c.collname, col_description(a.attrelid, a.attnum) AS comment,
-	       attgenerated as attgenerated
-	  FROM pg_attribute a
-	  LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum
-	  LEFT JOIN pg_type t ON a.atttypid = t.oid
-	  LEFT JOIN pg_collation c ON a.attcollation = c.oid AND a.attcollation <> t.typcollation
-	 WHERE a.attrelid = '"active_storage_attachments"'::regclass
-	   AND a.attnum > 0 AND NOT a.attisdropped
-	 ORDER BY a.attnum
-	
-2023-06-29 15:25:17.064 CEST [16819] ERROR:  relation "active_storage_attachments" does not exist at character 491
-2023-06-29 15:25:17.064 CEST [16819] STATEMENT:  SELECT a.attname, format_type(a.atttypid, a.atttypmod),
-	       pg_get_expr(d.adbin, d.adrelid), a.attnotnull, a.atttypid, a.atttypmod,
-	       c.collname, col_description(a.attrelid, a.attnum) AS comment,
-	       attgenerated as attgenerated
-	  FROM pg_attribute a
-	  LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum
-	  LEFT JOIN pg_type t ON a.atttypid = t.oid
-	  LEFT JOIN pg_collation c ON a.attcollation = c.oid AND a.attcollation <> t.typcollation
-	 WHERE a.attrelid = '"active_storage_attachments"'::regclass
-	   AND a.attnum > 0 AND NOT a.attisdropped
-	 ORDER BY a.attnum
-	

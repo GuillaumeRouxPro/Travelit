@@ -118,14 +118,4 @@ class BookingsController < ApplicationController
   def booking_params
     params.require(:booking).permit(:start_date, :end_date)
   end
-
-  def chat
-    @booking = Booking.find(params[:booking_id])
-    # Logic to send the message to the guide
-    # Example:
-    message = params[:message]
-    @booking.guide.send_message(message)
-    # Handle any additional logic or redirection after sending the message
-  end
-
 end

@@ -36,27 +36,4 @@
     </div>
   </div>
 
-  <h2>Booking Details</h2>
-<p>Status: <%= @booking.status %></p>
-<% if @booking.accepted? && @booking.tour.description_document.attached? %>
-  <p>Tour Description Document: <%= link_to 'Download', rails_blob_path(@booking.tour.description_document) %></p>
-<% end %>
-
-<h2>Chat with Guide</h2>
-<% if @booking.accepted? && @booking.guide.present? %>
-  <p>Guide: <%= @booking.guide.name %></p>
-  <%= form_with(url: chat_path, method: :post, remote: true) do |form| %>
-    <%= form.hidden_field :booking_id, value: @booking.id %>
-    <div>
-      <%= form.text_field :message, placeholder: "Type your message..." %>
-    </div>
-    <div>
-      <%= form.submit "Send" %>
-    </div>
-  <% end %>
-<% else %>
-  <p>Chat is not available for this booking.</p>
-<% end %>
-
-
 <% end %>
