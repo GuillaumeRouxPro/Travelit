@@ -1,0 +1,19 @@
+<!-- app/views/tours/index.html.erb -->
+
+ <%= render 'shared/navbar' %>
+
+
+<h1>Liste des Tours</h1>
+
+<div class="tour-list">
+  <% @tours.each do |tour| %>
+    <div class="tour-card">
+      <div class="tour-details">
+        <h2><%= tour.name %></h2>
+        <p><%= tour.description %></p>
+        <p class="tour-author">Par <%= tour.user.first_name %> <%= tour.user.last_name %></p>
+        <p class="tour-price"><%= tour.price %> euros</p>
+      </div>
+    </div>
+  <% end %>
+</div>

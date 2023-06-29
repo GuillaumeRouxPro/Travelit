@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: "pages#home"
+  root to: "tours#index"
+
+  resources :tours
+
 
   resources :tours do
     resources :bookings, only: [:new, :create]
@@ -11,6 +14,7 @@ Rails.application.routes.draw do
     member do
       patch 'accept'
       patch 'refuse'
+      post 'chat', on: :collection
     end
     resources :reviews, only: [:new, :create]
   end

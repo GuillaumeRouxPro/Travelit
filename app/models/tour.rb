@@ -12,4 +12,15 @@ class Tour < ApplicationRecord
   validates :photos, presence: { message: "Merci d'ajouter au moins une photo" }
   has_many :user_hobbies, dependent: :destroy
   has_many :hobbies, through: :user_hobbies
+
+  def self.search(hobbies, city, date, num_travelers)
+    tours = self.all
+
+    tours = tours.where(hobby_id: hobbies) if hobbies.present?
+    tours = tours.where(city: city) if city.present?
+    tours = tours.where(date: date) if date.present?
+    tours = tours.where("max_travelers >= ?", num_travelers.to_i) if num_travelers.present?
+
+    tours
+  end
 end
