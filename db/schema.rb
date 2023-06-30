@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_29_132842) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_30_150640) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -91,7 +91,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_29_132842) do
     t.bigint "hobby_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "tour_id", null: false
     t.index ["hobby_id"], name: "index_user_hobbies_on_hobby_id"
+    t.index ["tour_id"], name: "index_user_hobbies_on_tour_id"
     t.index ["user_id"], name: "index_user_hobbies_on_user_id"
   end
 
@@ -117,5 +119,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_29_132842) do
   add_foreign_key "reviews", "users"
   add_foreign_key "tours", "users"
   add_foreign_key "user_hobbies", "hobbies"
+  add_foreign_key "user_hobbies", "tours"
   add_foreign_key "user_hobbies", "users"
 end
