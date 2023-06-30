@@ -4,6 +4,10 @@ class ToursController < ApplicationController
   include Pundit
   skip_before_action :authenticate_user!, only: [:index, :show]
 
+  def show
+    @tour = Tour.find(params[:id])
+  end
+
   def create
     @tour = Tour.new(tour_params)
     @tour.image = params[:tour][:image] # Assigner le fichier téléchargé à l'attribut image

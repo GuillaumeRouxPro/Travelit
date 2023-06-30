@@ -6,19 +6,17 @@
   <%= render 'shared/search' %>
 </div>
 
-
-
 <div class="container-fluid">
   <h1 class="pt-4">Trouvez votre guide</h1>
   <div class="row">
     <% @tours.each do |tour| %>
       <div class="col-md-6 col-lg-4">
-        <div class="card-trip card mb-4">
-          <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" class="card-img-top" />
+        <div class="card-trip card mb-4" onclick="redirectToTour('<%= tour_path(tour) %>')">
+          <img src="https://hips.hearstapps.com/hmg-prod/images/nature-quotes-landscape-1648265299.jpg" class="card-img-top" />
           <div class="card-trip-infos">
             <div>
               <h3 class="card-trip-title"><%= tour.name %> - <span class="small-text"><%= tour.user.first_name %> <%= tour.user.last_name %></span></h3>
-               <p class="card-text">
+              <p class="card-text">
                 <% description_words = tour.description.split(' ') %>
                 <% truncated_description = description_words.take(5).join(' ') %>
                 <%= truncated_description %> ...
@@ -32,6 +30,11 @@
   </div>
 </div>
 
+<script>
+  function redirectToTour(url) {
+    window.location.href = url;
+  }
+</script>
 
 
 <%= render 'shared/footer' %>
