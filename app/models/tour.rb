@@ -13,6 +13,11 @@ class Tour < ApplicationRecord
   has_many :user_hobbies, dependent: :destroy
   has_many :hobbies, through: :user_hobbies
 
+  def new
+    @tour = Tour.new
+    authorize @tour
+  end
+
   def self.search(hobbies, city, date, num_travelers)
     tours = self.all
 

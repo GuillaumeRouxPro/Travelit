@@ -1,8 +1,19 @@
 require 'date'
 
 class ToursController < ApplicationController
+  include Pundit
   skip_before_action :authenticate_user!, only: [:index, :show]
-  before_action :set_flat, only: [:show, :edit, :update, :destroy]
+
+  def create
+    @tour = Tour.new(tour_params)
+    @tour.image = params[:tour][:image] # Assigner le fichier téléchargé à l'attribut image
+
+    # Le reste du code pour enregistrer le tour
+  end
+
+  def new
+    @tour = Tour.new
+  end
 
   def index
     @tours = policy_scope(Tour)
@@ -10,6 +21,10 @@ class ToursController < ApplicationController
 
   def search
     @tours = Tour.search(params[:hobbies], params[:city], params[:date], params[:num_travelers])
+  end
+
+  def tour_params
+    params.require(:tour).permit(:title, :description, :image)
   end
 
 end
