@@ -7,3 +7,16 @@
 @import "form";
 @import "footer";
 @import "cards";
+
+.btn-primary {
+    background-color: #000000;
+    border-color: #000000;
+    color: #ffffff;
+    border-radius: 8px;
+}
+.btn-primary:hover {
+  background-color: #ffffff;
+  border-color: #000000;
+  color: #000000;
+  border-radius: 8px;
+}

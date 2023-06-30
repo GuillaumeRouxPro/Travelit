@@ -1,0 +1,22 @@
+<div class="container-fluid">
+  <%= simple_form_for :search, method: :get do |f| %>
+    <div class="form-group pt-3">
+      <%= f.input :city, label: "Ville", input_html: { class: "form-control" } %>
+    </div>
+    <div class="form-group pt-3">
+      <%= f.label :hobbies, "Hobbies" %>
+      <%= f.collection_select :hobbies, Hobby.all, :id, :name, { prompt: true }, { class: "form-control" } %>
+    </div>
+    <div class="form-group pt-3">
+      <%= f.label :number_of_travelers, "Nombre de voyageurs" %>
+      <div class="row">
+        <div class="col">
+          <%= f.select :number_of_travelers, options_for_select([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]), { prompt: "Sélectionnez un nombre", class: "form-control" } %>
+        </div>
+      </div>
+    </div>
+    <div class="container d-flex justify-content-center pt-3">
+      <%= f.button :submit, "Rechercher votre guide", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
