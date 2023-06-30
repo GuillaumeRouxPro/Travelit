@@ -6,25 +6,32 @@
   <%= render 'shared/search' %>
 </div>
 
+
+
 <div class="container-fluid">
-  <div class="container-fluid pt-5">
-    <h1 class="pt-4">Trouvez votre guide</h1>
-  </div>
+  <h1 class="pt-4">Trouvez votre guide</h1>
   <div class="row">
     <% @tours.each do |tour| %>
-      <div class="col-md-4">
-        <div class="card mb-4">
-          <!-- Ajoutez les classes Bootstrap nécessaires pour styliser votre carte -->
-          <div class="card-body">
-            <h2 class="card-title"><%= tour.name %></h2>
-            <p class="card-text"><%= tour.description %></p>
-            <p class="card-text">Par <%= tour.user.first_name %> <%= tour.user.last_name %></p>
-            <p class="card-text"><%= tour.price %> euros</p>
+      <div class="col-md-6 col-lg-4">
+        <div class="card-trip card mb-4">
+          <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" class="card-img-top" />
+          <div class="card-trip-infos">
+            <div>
+              <h3 class="card-trip-title"><%= tour.name %> - <span class="small-text"><%= tour.user.first_name %> <%= tour.user.last_name %></span></h3>
+               <p class="card-text">
+                <% description_words = tour.description.split(' ') %>
+                <% truncated_description = description_words.take(5).join(' ') %>
+                <%= truncated_description %> ...
+              </p>
+            </div>
+            <h4 class="card-trip-pricing"><%= tour.price %><span class="small-text">€</span></h4>
           </div>
         </div>
       </div>
     <% end %>
   </div>
 </div>
+
+
 
 <%= render 'shared/footer' %>

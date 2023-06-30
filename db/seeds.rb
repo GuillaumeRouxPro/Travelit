@@ -9,6 +9,8 @@
 require 'faker'
 
 # Création de 10 utilisateurs fictifs
+
+User.destroy_all
 10.times do
   User.create!(
     first_name: Faker::Name.first_name,
