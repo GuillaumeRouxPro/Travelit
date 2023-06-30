@@ -1,4 +1,7 @@
+
 .navbar-lewagon {
+  margin: 0;
+  padding:0;
   justify-content: space-between;
   background: white;
 }
@@ -8,5 +11,13 @@
 }
 
 .navbar-lewagon .navbar-brand img {
+  margin-top: 0;
+  margin-bottom: 0;
+  width: 50px;
+}
+
+.avatar-bordered {
   width: 40px;
+  border-radius: 50%;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
 }
