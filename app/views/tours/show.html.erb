@@ -7,11 +7,35 @@
       <div class="card-trip card mb-4">
         <div class="card-trip-infos">
           <div>
-            <h3 class="card-trip-title"><%= @tour.user.first_name %> <%= @tour.user.last_name %></p></h3>
+            <h3 class="card-trip-title"><%= @tour.user.first_name %> <%= @tour.user.last_name %></h3>
             <p class="card-text"><%= @tour.description %></p>
+            <div class="card-text">
+              <h4>Hobbies:</h4>
+              <ul>
+                <% @tour.user.hobbies.each do |hobby| %>
+                  <li><%= hobby.name %></li>
+                <% end %>
+              </ul>
+            </div>
+            <%= link_to "Réservez votre guide", "#", id: "reserve-guide-btn", class: "btn btn-primary" %>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+
+<script>
+  // Attache un gestionnaire d'événement au clic sur le bouton
+  document.getElementById("reserve-guide-btn").addEventListener("click", function(event) {
+    // Empêche le comportement par défaut du lien
+    event.preventDefault();
+
+    // Affiche la notification
+    alert("Votre demande a bien été transmise, retrouvez votre voyage dans l'onglet My bookings");
+
+    // Redirige l'utilisateur vers la page My bookings
+    //window.location.href = "/my_bookings";
+  });
+</script>
