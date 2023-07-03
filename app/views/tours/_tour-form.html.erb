@@ -1,22 +1,24 @@
-<div class="container-fluid">
-  <%= simple_form_for :search, method: :get do |f| %>
-    <div class="form-group pt-3">
-      <%= f.input :city, label: "Ville", input_html: { class: "form-control" } %>
+<div class="container">
+  <%= simple_form_for :tour, html: { class: "my-5" } do |f| %>
+    <div class="form-group">
+      <%= f.label :city, "Ville" %>
+      <%= f.text_field :city, class: "form-control" %>
     </div>
-    <div class="form-group pt-3">
+    <div class="form-group">
       <%= f.label :hobbies, "Hobbies" %>
-      <%= f.collection_select :hobbies, Hobby.all, :id, :name, { prompt: true }, { class: "form-control" } %>
-    </div>
-    <div class="form-group pt-3">
-      <%= f.label :number_of_travelers, "Nombre de voyageurs" %>
-      <div class="row">
-        <div class="col">
-          <%= f.select :number_of_travelers, options_for_select([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]), { prompt: "Sélectionnez un nombre", class: "form-control" } %>
+      <% Hobby.all.each do |hobby| %>
+        <div class="form-check">
+          <%= check_box_tag "tour[hobby_ids][]", hobby.id, false, id: "tour_hobby_#{hobby.id}", class: "form-check-input" %>
+          <%= label_tag "tour_hobby_#{hobby.id}", hobby.name, class: "form-check-label" %>
         </div>
-      </div>
+      <% end %>
     </div>
-    <div class="container d-flex justify-content-center pt-3">
-      <%= f.button :submit, "Rechercher votre guide", class: "btn btn-primary" %>
+    <div class="form-group">
+      <%= f.label :number_of_travlers, "Nombre de voyageurs" %>
+      <%= f.select :number_of_travlers, options_for_select(1..15), { prompt: "Sélectionnez un nombre", class: "form-control" } %>
+    </div>
+    <div class="text-center">
+      <%= f.button :submit, "Trouver mon guide", class: "btn btn-primary" %>
     </div>
   <% end %>
 </div>

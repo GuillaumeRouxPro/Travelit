@@ -3,33 +3,3 @@
 // ./bin/rails generate stimulus controllerName
 
 import { application } from "./application"
-
-
-import AddressAutocompleteController from "./address_autocomplete_controller"
-application.register("address-autocomplete", AddressAutocompleteController)
-
-import BookingController from "./booking_controller"
-application.register("booking", BookingController)
-
-import TourpickrController from "./tourpickr_controller"
-application.register("tourpickr", TourpickrController)
-
-import HelloController from "./hello_controller"
-application.register("hello", HelloController)
-
-import HideCustomerSliderController from "./hide_customer_slider_controller"
-application.register("hide-customer-slider", HideCustomerSliderController)
-
-
-import MapController from "./map_controller"
-application.register("map", MapController)
-
-import ScrollToReviewsController from "./scroll_to_reviews_controller"
-application.register("scroll-to-reviews", ScrollToReviewsController)
-
-
-import SliderController from "./slider_controller"
-application.register("slider", SliderController)
-
-import TomselectController from "./tomselect_controller"
-application.register("tomselect", TomselectController)

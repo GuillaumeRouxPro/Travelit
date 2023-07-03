@@ -11,18 +11,20 @@ require 'faker'
 # Création de 10 utilisateurs fictifs
 
 User.destroy_all
+Tour.destroy_all
+Hobby.destroy_all
+
 10.times do
   User.create!(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
     email: Faker::Internet.email,
-    password: '123456' # Vous pouvez définir un mot de passe par défaut pour les utilisateurs fictifs
+    password: '123456'
   )
 end
 
 puts 'Faux utilisateurs créés !'
 
-# Crée 10 faux tours
 10.times do
   tour = Tour.new(
     name: Faker::Lorem.word,
@@ -33,9 +35,30 @@ puts 'Faux utilisateurs créés !'
     user_id: User.pluck(:id).sample
   )
 
-  # Ajoute une photo au tour
-  file = URI.open('https://www.autour-dumonde.fr/sx-content/uploads/cms/img-presentation-1.jpg') # Remplacez l'URL par l'URL de votre photo
+  file = URI.open('https://www.autour-dumonde.fr/sx-content/uploads/cms/img-presentation-1.jpg')
   tour.photos.attach(io: file, filename: 'photo.jpg')
 
   tour.save!
 end
+
+puts 'Faux tours créés !'
+
+10.times do
+  Hobby.create!(
+    name: Faker::Lorem.word,
+    icon: Faker::Lorem.word
+  )
+end
+
+puts 'Faux hobbies créés !'
+
+10.times do
+  tour = Tour.all.sample
+  hobby = Hobby.create!(
+    name: Faker::Lorem.word,
+    icon: Faker::Lorem.word
+  )
+  tour.user.hobbies << hobby
+end
+
+puts 'Faux hobbies de tour créés !'
