@@ -17,6 +17,7 @@ class ToursController < ApplicationController
 
   def new
     @tour = Tour.new
+    @hobby = Hobby.all
   end
 
   def index

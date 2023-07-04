@@ -1,11 +1,17 @@
-<%= simple_form_for(tour) do |f| %>
-  <%# <%= f.error_notification %>
-  <%# <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-  <%= f.input :name, label: 'Nom du tour' %>
-  <%= f.input :description %>
-  <%= f.input :price, label: 'Prix' %>
-  <%= f.input :number_of_travlers, label: 'Nombre de voyageurs maximum' %>
-  <%= f.input :hobbies, label: 'Sélectionnez vos hobbies' %>
-  <%= f.input :photos, as: :file, input_html: { multiple: true } %>
-  <%= f.submit label, class: "btn btn-primary" %>
-<% end %>
+
+  <%= simple_form_for(tour) do |f| %>
+    <%# <%= f.error_notification %>
+    <%# <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+    <%= f.input :name, label: 'Nom du tour' %>
+    <%= f.input :description %>
+    <%= f.input :price, label: 'Prix' %>
+    <%= f.input :number_of_travlers, label: 'Nombre de voyageurs maximum' %>
+    <% @hobby.each do |hobby| %>
+      <div class="form-check">
+        <%= f.check_box :hobbies, { multiple: true, class: "form-check-input" }, hobby.id, nil %>
+        <%= f.label :hobbies, hobby.name, class: "form-check-label" %>
+      </div>
+    <% end %>
+    <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+    <%= f.submit label, class: "btn btn-primary" %>
+  <% end %>
