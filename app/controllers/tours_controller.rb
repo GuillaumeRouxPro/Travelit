@@ -10,7 +10,12 @@ class ToursController < ApplicationController
 
   def create
     @tour = Tour.new(tour_params)
-    @tour.image = params[:tour][:image] # Assigner le fichier téléchargé à l'attribut image
+    @tour.hobby_ids = params[:tour][:hobbies]
+    @tour.save!
+    if params[:tour][:image]
+      @tour.image = params[:tour][:image] # Assigner le fichier téléchargé à l'attribut image
+    end
+    redirect_to root_path
 
     # Le reste du code pour enregistrer le tour
   end
@@ -29,7 +34,7 @@ class ToursController < ApplicationController
   end
 
   def tour_params
-    params.require(:tour).permit(:title, :description, :image)
+    params.require(:tour).permit(:name, :description, :image, :price, :number_of_travlers, :user_id, :city, photos: [], hobby_ids: [])
   end
 
 end
