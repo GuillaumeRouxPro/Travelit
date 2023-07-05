@@ -10,8 +10,10 @@ require 'faker'
 
 # Création de 10 utilisateurs fictifs
 
-User.destroy_all
+
+UserHobby.destroy_all
 Tour.destroy_all
+User.destroy_all
 Hobby.destroy_all
 
 10.times do

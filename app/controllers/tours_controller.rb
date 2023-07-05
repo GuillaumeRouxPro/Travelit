@@ -10,14 +10,22 @@ class ToursController < ApplicationController
 
   def create
     @tour = Tour.new(tour_params)
-    @tour.hobby_ids = params[:tour][:hobbies]
-    @tour.save!
+    hobby_ids = params[:tour][:hobby_ids]
+    @tour.save
     if params[:tour][:image]
       @tour.image = params[:tour][:image] # Assigner le fichier téléchargé à l'attribut image
     end
+    hobby_ids.each do |tour_hobby|
+      user_hobby = UserHobby.find_or_initialize_by(user_id: @tour.user.id, hobby_id: tour_hobby, tour_id: @tour.id)
+      if user_hobby.new_record?
+        user_hobby.save!
+        if !Hobby.exists?(tour_hobby)
+          name = Hobby.find(tour_hobby)
+          Hobby.create!(name: name, icon: "link") # To do add link from the impuut
+        end
+      end
+    end
     redirect_to root_path
-
-    # Le reste du code pour enregistrer le tour
   end
 
   def new
