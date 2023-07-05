@@ -1,0 +1,20 @@
+/* Centrer le bouton "Réservez votre guide" */
+#reserve-guide-btn {
+  display: block;
+  margin: 0 auto;
+}
+
+#reserve-guide-btn:hover {
+  background-color: #f5f5f5;
+  color: #000;
+}
+
+/* Ajouter de l'espace autour des cartes */
+.card {
+  margin-bottom: 20px;
+}
+
+/* Ajouter de l'espace entre les listes de hobbies */
+.list-group-item {
+  margin-bottom: 5px;
+}
