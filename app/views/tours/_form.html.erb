@@ -1,11 +1,47 @@
-<%= simple_form_for(tour) do |f| %>
-  <%# <%= f.error_notification %>
-  <%# <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-  <%= f.input :name, label: 'Nom du tour' %>
-  <%= f.input :description %>
-  <%= f.input :price, label: 'Prix' %>
-  <%= f.input :number_of_travlers, label: 'Nombre de voyageurs maximum' %>
-  <%= f.input :hobbies, label: 'Sélectionnez vos hobbies' %>
-  <%= f.input :photos, as: :file, input_html: { multiple: true } %>
-  <%= f.submit label, class: "btn btn-primary" %>
-<% end %>
+
+  <%= simple_form_for(tour) do |f| %>
+    <%# <%= f.error_notification %>
+    <%# <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+    <%= f.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
+    <%= f.input :name, label: 'Nom du tour' %>
+    <%= f.input :description %>
+    <%= f.input :city %>
+    <%= f.input :price, label: 'Prix' %>
+    <%= f.input :number_of_travlers, label: 'Nombre de voyageurs maximum' %>
+    <div class="form-check">
+      <button type="button" class="btn btn-primary" id="add_hobby_button-1">Add to Hobbies</button>
+    </div>
+
+    <!-- Initially hide the new hobby form fields -->
+    <div id="new_hobbies_fields" style="display: none;">
+      <%= f.simple_fields_for :hobbies do |hobby| %>
+        <%= hobby.input :name, label: "New Hobby Name" %>
+        <%= hobby.input :icon, label: "Icon Name" %>
+      <% end %>
+    </div>
+    <% @hobby.each do |hobby| %>
+      <div class="form-check">
+        <%= f.check_box :hobby_ids,  { multiple: true, class: "form-check-input" } , hobby.id, nil %>
+        <%= f.label :hobby_ids, hobby.name, class: "form-check-label" %>
+      </div>
+    <% end %>
+
+    <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+    <%= f.submit label, class: "btn btn-primary" %>
+  <% end %>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('add_hobby_button-1').addEventListener('click', function() {
+    var newHobbiesFields = document.getElementById('new_hobbies_fields');
+    var addhobby_btn1 = document.getElementById('add_hobby_button-1');
+    if (newHobbiesFields.style.display === 'none') {
+      newHobbiesFields.style.display = 'block';
+      addhobby_btn1.style.display = 'none'
+    } else {
+      newHobbiesFields.style.display = 'none';
+    }
+  });
+});
+</script>

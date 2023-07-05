@@ -10,8 +10,10 @@ require 'faker'
 
 # Création de 10 utilisateurs fictifs
 
-User.destroy_all
+
+UserHobby.destroy_all
 Tour.destroy_all
+User.destroy_all
 Hobby.destroy_all
 
 10.times do
@@ -43,22 +45,31 @@ end
 
 puts 'Faux tours créés !'
 
-10.times do
-  Hobby.create!(
-    name: Faker::Lorem.word,
-    icon: Faker::Lorem.word
-  )
-end
+li_hobbies = [
+  Hobby.create!(name: "Football", icon: "link"), Hobby.create!(name: "Tennis", icon: "link"),
+  Hobby.create!(name: "Swimming", icon: "link"),
+  Hobby.create!(name: "Running", icon: "link"),
+  Hobby.create!(name: "Golf", icon: "link"),
+  Hobby.create!(name: "Martial arts", icon: "link")
+]
 
-puts 'Faux hobbies créés !'
+puts 'Faux hobbies crée !'
+# 6.times do
+#   User_Hobby.create!(
+#     name: Faker::Lorem.word,
+#     icon: Faker::Lorem.word
+#   )
+# end
 
-10.times do
-  tour = Tour.all.sample
-  hobby = Hobby.create!(
-    name: Faker::Lorem.word,
-    icon: Faker::Lorem.word
-  )
-  tour.user.hobbies << hobby
-end
+# puts 'Faux hobbies créés !'
 
-puts 'Faux hobbies de tour créés !'
+# 10.times do
+#   tour = Tour.all.sample
+#   hobby = Hobby.create!(
+#     name: Faker::Lorem.word,
+#     icon: Faker::Lorem.word
+#   )
+#   tour.user.hobbies << hobby
+# end
+
+# puts 'Faux hobbies de tour créés !'
