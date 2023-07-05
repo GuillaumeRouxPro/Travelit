@@ -18,3 +18,37 @@
 .list-group-item {
   margin-bottom: 5px;
 }
+
+.card-text {
+  font-size: 16px;
+  color: #999;
+  font-weight: 100;
+}
+
+.member-since {
+  font-size: 14px;
+  color: #999;
+  font-weight: 100;
+}
+
+.tour-description-title {
+  /* Vos styles personnalisés */
+  font-weight: bold;
+  color: #333;
+  /* ... */
+}
+
+.custom-button {
+  /* Vos styles personnalisés */
+  padding: 10px 50px;
+  border-radius: 2px;
+  background: #706a6a;
+  color: #fff;
+  border: 1px solid #000;
+  /* ... */
+}
+
+.card-body {
+  border-radius: 10px;
+  border: 1px solid #dddddd00;
+}
