@@ -9,19 +9,18 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto">
+      <ul class="navbar-nav ms-auto">
         <% if user_signed_in? %>
-          <li class="nav-item active">
+          <li class="nav-item active ms-auto">
             <%= link_to "Add a tour", new_tour_path, class: "nav-link" %>
           </li>
-          <li class="nav-item active">
+          <li class="nav-item active ms-auto">
             <%= link_to "My bookins", "#", class: "nav-link" %>
           </li>
-          <li class="nav-item">
+          <li class="nav-item active ms-auto">
             <%= link_to "Messages", "#", class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= image_tag "https://cdn-icons-png.flaticon.com/512/2491/2491922.png", class: "avatar-bordered", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "Add a tour", '#', class: "nav-link" %>
               <%= link_to "My bookings", '#', class: "dropdown-item" %>

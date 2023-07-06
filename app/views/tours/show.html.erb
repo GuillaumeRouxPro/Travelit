@@ -44,8 +44,8 @@
       <% @tour.reviews.each do |review| %>
         <div class="card mb-3">
           <div class="card-body">
-            <p class="card-text"><%= review.comment %></p>
             <p class="card-text">Rating: <%= review.rating %></p>
+            <p class="card-text"><%= review.comment %></p>
           </div>
         </div>
       <% end %>
@@ -53,11 +53,12 @@
   </div>
 
   <div class="row">
-    <div class="col">
+    <div class="col text-center">
     <%= link_to "Réservez votre tour avec #{@tour.user.first_name}", "#", class: "btn btn-primary" %>
     </div>
   </div>
 </div>
+
 
 
 <%= render 'shared/footer' %>
