@@ -1,0 +1,8 @@
+<%= render 'shared/navbar' %>
+
+<%= render 'search-form', tour: @tour ,hobbies: @hobbies%>
+<% flash.each do |message_type, message| %>
+  <div class="alert alert-<%= message_type %>">
+    <%= message %>
+  </div>
+<% end %>

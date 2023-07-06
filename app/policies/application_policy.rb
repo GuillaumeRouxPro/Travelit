@@ -3,7 +3,7 @@
 class ApplicationPolicy
   attr_reader :user, :record
 
-  def initialize(user, record)
+  def initialize(user, record) #user -> current_user # record -> is the model
     @user = user
     @record = record
   end

@@ -31,7 +31,7 @@ class ToursController < ApplicationController
         if user_hobby.new_record?
           user_hobby.save!
           if !Hobby.exists?(tour_hobby)
-            name = Hobby.find(tour_hobby) # normaly we dont need this 
+            name = Hobby.find(tour_hobby) # normaly we dont need this
             Hobby.create!(name: name, icon: "link") # To do add link from the impuut
           end
         end
@@ -47,6 +47,11 @@ class ToursController < ApplicationController
 
   def index
     @tours = policy_scope(Tour)
+  end
+
+  # va rechercher des tour specifiaue
+  def top_match
+    @tours = Tour.find(params[:tour_ids])
   end
 
   def search
