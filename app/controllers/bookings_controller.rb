@@ -3,59 +3,61 @@ require 'date'
 class BookingsController < ApplicationController
   include Pundit
 
+
+
   def index
     @bookings_as_traveler = policy_scope(Booking.where(user_id: current_user.id).order(:start_date))
-    @bookings_as_guide = policy_scope(Booking.joins(:flat).where(flats: { user_id: current_user.id }).order(:start_date))
+    @bookings_as_guide = policy_scope(Booking.joins(:tour).where(tours: { user_id: current_user.id }).order(:start_date))
     @bookings = @bookings_as_traveler.to_a + @bookings_as_guide.to_a
     @review = Review.new
   end
 
   def new
     @booking = Booking.new
-    @flat = Flat.find(params[:flat_id])
+    @flat = Tour.find(params[:tour_id])
     @booking.user = current_user
     @booking.flat = @flat
     authorize @booking
   end
 
   def create
-    @flat = Flat.find(params[:flat_id])
+    @tour = Tour.find(params[:tour_id])
     @booking = Booking.new(booking_params)
     @booking.user = current_user
-    @booking.flat = @flat
+    @booking.tour = @tour
     @booking.confirmation = "pending"
     authorize @booking
     check = check_available(@booking)
     if check
-      redirect_back(fallback_location: flat_path(@booking.flat), notice: "Cet appartement est déjà réservé à ces dates.")
+      redirect_back(fallback_location: tour_path(@booking.tour), notice: "Ce tour est déjà réservé !")
     elsif @booking.save
-      redirect_to flat_path(@flat), notice: "La réservation a bien été effectuée !"
+      redirect_to tour_path(@tour), notice: "La réservation a bien été effectuée !"
       # redirect_back(fallback_location: flat_path(@booking.flat), notice: "La réservation a bien été effectuée !")
     else
-      redirect_to flat_path(@flat), notice: "Vous ne pouvez pas demander la réservation à ces dates.", status: :unprocessable_entity
+      redirect_to tour_path(@tour), notice: "Vous ne pouvez pas demander la réservation à ces dates.", status: :unprocessable_entity
       # redirect_back(fallback_location: flat_path(@booking.flat), notice: "Cet appartement est déjà réservé à ces dates.")
     end
   end
 
   def edit
     @booking = Booking.find(params[:id])
-    @flat = @booking.flat
+    @tour = @booking.tour
     authorize @booking
   end
 
   def update
     @booking = Booking.find(params[:id])
     new_booking = Booking.new(booking_params)
-    new_booking.flat = @booking.flat
-    @flat = @booking.flat
+    new_booking.tour = @booking.tour
+    @tour = @booking.tour
     authorize @booking
     check = check_available(new_booking)
     if check
-      redirect_back(fallback_location: flat_path(@booking.flat), notice: "Cet appartement est déjà réservé à ces dates.")
+      redirect_back(fallback_location: tour_path(@booking.tour), notice: "Ce tour est déjà réservé à ces dates.")
     elsif @booking.update(booking_params)
-      redirect_to flat_path(@flat), notice: "Votre réservation a bien été mise à jour !"
+      redirect_to tour_path(@tour), notice: "Votre réservation a bien été mise à jour !"
     else
-      redirect_to flat_path(@flat), notice: "Vous ne pouvez pas demander la réservation à ces dates.", status: :unprocessable_entity
+      redirect_to tour_path(@tour), notice: "Vous ne pouvez pas demander la réservation à ces dates.", status: :unprocessable_entity
 
     end
   end
@@ -63,21 +65,21 @@ class BookingsController < ApplicationController
   def destroy
     @booking = Booking.find(params[:id])
     authorize @booking
-    @flat = @booking.flat
+    @tour = @booking.tour
     @booking.destroy
-    redirect_back(fallback_location: flat_path(@booking.flat), notice: "La réservation a bien été annulée !")
+    redirect_back(fallback_location: tour_path(@booking.tour), notice: "La réservation a bien été annulée !")
   end
 
   def accept
     @booking = Booking.find(params[:id])
-    @flat = @booking.flat
+    @tour = @booking.tour
     check = check_available(@booking)
     authorize @booking
     if !check
       @booking.update(confirmation: "accepted")
-      redirect_back(fallback_location: flat_path(@booking.flat), notice: "La réservation a été acceptée !")
+      redirect_back(fallback_location: tour_path(@booking.tour), notice: "La réservation a été acceptée !")
     else
-      redirect_back(fallback_location: flat_path(@booking.flat), notice: "Vous ne pouvez pas accepter cette réservation")
+      redirect_back(fallback_location: tour_path(@booking.tour), notice: "Vous ne pouvez pas accepter cette réservation")
     end
   end
 
@@ -85,7 +87,7 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
     @booking.update(confirmation: "refused")
     authorize @booking
-    redirect_back(fallback_location: flat_path(@booking.flat), notice: "La réservation a été refusée !")
+    redirect_back(fallback_location: tour_path(@booking.tour), notice: "La réservation a été refusée !")
   end
 
   private
@@ -93,13 +95,13 @@ class BookingsController < ApplicationController
   def check_available(booking)
     check = false
     list_of_reservations = []
-    reservations = Booking.where(flat: booking.flat, confirmation: "accepted")
+    reservations = Booking.where(tour: booking.tour, confirmation: "accepted")
     reservations.each do |reservation|
       list_of_reservations << [reservation.start_date, reservation.end_date]
     end
 
-    if current_user != booking.flat.user then
-      my_reservations = Booking.where(flat: booking.flat, confirmation: "pending", user: current_user)
+    if current_user != booking.tour.user then
+      my_reservations = Booking.where(tour: booking.tour, confirmation: "pending", user: current_user)
       my_reservations.each do |reservation|
         list_of_reservations << [reservation.start_date, reservation.end_date]
       end
@@ -118,14 +120,4 @@ class BookingsController < ApplicationController
   def booking_params
     params.require(:booking).permit(:start_date, :end_date)
   end
-
-  def chat
-    @booking = Booking.find(params[:booking_id])
-    # Logic to send the message to the guide
-    # Example:
-    message = params[:message]
-    @booking.guide.send_message(message)
-    # Handle any additional logic or redirection after sending the message
-  end
-
 end

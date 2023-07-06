@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   root to: "tours#index"
 
   get '/tours/new', to: 'tours#new', as: 'new_tour'
-
+  resources :bookings
   resources :tours do
     collection do
       get :top_match
@@ -18,8 +18,6 @@ Rails.application.routes.draw do
     #resources :bookings, only: [:new, :create]
     #resources :reviews, only: [:index, :create]
   #end
-
-  resources :bookings, only: [:index, :show, :edit, :update, :destroy]
   #patch 'accept'
      # patch 'refuse'
      # post 'chat', on: :collection

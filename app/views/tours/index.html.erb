@@ -7,10 +7,46 @@
 
 </div>
 
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <a href="<%= tours_path(city: 'Bali') %>">
+        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://admin.ramcotravel.com/uploads/VoyageOrganise/352bd111b8bfa322420ec5dd3b947f4aa5bc32d9.jpeg)">
+          Bali
+        </div>
+      </a>
+    </div>
+    <div class="col">
+      <a href="<%= tours_path(city: 'Athens') %>">
+        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://i.guim.co.uk/img/media/de3366adb21f4f8e3f7d9a82809f2ba9a3ce1182/0_113_3508_2106/master/3508.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=1880e2c7177de6988c519fa97036ab30)">
+          Athens
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <div class="pt-3 row">
+    <div class="col">
+      <a href="<%= tours_path(city: 'Paris') %>">
+        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://images.adsttc.com/media/images/5d44/14fa/284d/d1fd/3a00/003d/large_jpg/eiffel-tower-in-paris-151-medium.jpg?1564742900)">
+          Paris
+        </div>
+      </a>
+    </div>
+    <div class="col">
+      <a href="<%= tours_path(city: 'London') %>">
+        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://wallpaperaccess.com/full/32514.jpg)">
+          London
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
 
 
 <div class="container-fluid">
-  <h1 class="pt-4">Trouvez votre guide</h1>
+  <h2 class="pt-4">Trouvez votre guide</h2>
   <div class="row">
     <% @tours.each do |tour| %>
       <div class="col-md-6 col-lg-4">
