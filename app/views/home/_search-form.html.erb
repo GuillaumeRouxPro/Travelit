@@ -1,0 +1,26 @@
+
+<div class="container">
+  <%= simple_form_for "", url: home_search_path, method: :get do |f| %>
+    <div class="form-group">
+      <%= f.label :city, "Ville" %>
+      <%= f.input :city, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :number_of_travlers, "Number of travellers" %>
+      <%= f.select :number_of_travlers, options_for_select(1..15), { prompt: "Enter a number", class: "form-control" } %>
+    </div>
+    <div class="form-group">
+      <%= f.label :hobby, "Hobbies" %>
+      <% @hobbies.each do |hobby| %>
+        <div class="form-check">
+          <%= check_box_tag "tour[hobby_ids][]", hobby.id, false, id: "tour_hobby_#{hobby.id}", class: "form-check-input" %>
+          <%= label_tag "tour_hobby_#{hobby.id}", hobby.name, class: "form-check-label" %>
+        </div>
+      <% end %>
+    </div>
+    <div class="text-center">
+      <%= f.submit 'find my local guide', class: "btn btn-primary" %>
+    </div>
+  <% end %>
+
+</div>
