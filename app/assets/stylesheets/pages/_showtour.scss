@@ -1,10 +1,10 @@
 /* Centrer le bouton "Réservez votre guide" */
-#reserve-guide-btn {
+.reserve-guide-btn {
   display: block;
   margin: 0 auto;
 }
 
-#reserve-guide-btn:hover {
+.reserve-guide-btn:hover {
   background-color: #f5f5f5;
   color: #000;
 }
@@ -40,9 +40,9 @@
 
 .custom-button {
   /* Vos styles personnalisés */
-  padding: 10px 50px;
+  padding: 5px 30px;
   border-radius: 2px;
-  background: #706a6a;
+  background: #ba8c8c;
   color: #fff;
   border: 1px solid transparent;
   /* ... */
@@ -51,4 +51,9 @@
 .card-body {
   border-radius: 10px;
   border: 1px solid #dddddd00;
+}
+
+.text-bold {
+  padding-top: 10px;
+  font-size: 12px;
 }

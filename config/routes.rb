@@ -5,7 +5,9 @@ Rails.application.routes.draw do
 
   get '/tours/new', to: 'tours#new', as: 'new_tour'
 
+
   resources :tours
+  resources :bookings
   resources :hobbies, only: [:index, :new, :create]
 
   #resources :tours do

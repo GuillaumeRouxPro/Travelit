@@ -3,6 +3,8 @@ require 'date'
 class BookingsController < ApplicationController
   include Pundit
 
+
+
   def index
     @bookings_as_traveler = policy_scope(Booking.where(user_id: current_user.id).order(:start_date))
     @bookings_as_guide = policy_scope(Booking.joins(:tour).where(tours: { user_id: current_user.id }).order(:start_date))
