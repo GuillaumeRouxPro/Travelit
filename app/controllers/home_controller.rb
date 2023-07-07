@@ -3,7 +3,6 @@ class HomeController < ApplicationController
   def search
     authorize @search
     @hobbies = Hobby.all
-
     @tour =
     if params[:city].present? || params[:date].present?
       Tour.where(city: params[:city])
@@ -11,7 +10,7 @@ class HomeController < ApplicationController
       nil
     end
     if @tour.nil? || @tour.empty?
-      flash.now[:alert] = 'There are no tours that match your search.'
+      #flash.now[:alert] = 'There are no tours that match your search.'
       render 'search' and return
     end
     selected_hobbies = params[:tour][:hobby_ids]

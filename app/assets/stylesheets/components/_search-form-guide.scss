@@ -1,0 +1,83 @@
+.tag-item {
+  display: inline-block;
+}
+
+.tag-selector {
+  position: absolute;
+  transform: scale(0);
+}
+
+.tag-selector + label {
+  cursor: pointer;
+  display: inline-block;
+  font-size: 0.6rem;
+  border-radius: 50rem;
+  padding: 0.3rem 1rem;
+  background-color: #ffffff;
+  color: #000000;
+  border: 1px solid #000000;
+  margin-bottom: 0.4rem;
+  width: max-content;
+}
+
+.tag-selector:checked + label {
+  background-color: #000000;
+  color: white;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.hidden-label {
+  display: none;
+}
+
+
+.hobby-wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 2fr);
+  grid-gap: 5px;
+}
+
+.tag-label {
+  display: inline-block;
+}
+
+.form-label-title {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.custom-select {
+  font-size: 50px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f7f7f7;
+  color: #333;
+  width: 100%;
+  transition: border-color 0.3s ease;
+}
+
+.custom-select:focus {
+  outline: none;
+  border-color: #7e73ff; /* Couleur de bordure lorsqu'elle est sélectionnée */
+  box-shadow: 0 0 0 2px rgba(126, 115, 255, 0.2); /* Effet d'ombre lorsqu'elle est sélectionnée */
+}
+
+.custom-select option {
+  background-color: #fff; /* Couleur de fond des options */
+  color: #333; /* Couleur du texte des options */
+}
+
+.custom-select:hover {
+  border-color: #999; /* Couleur de bordure au survol */
+}
