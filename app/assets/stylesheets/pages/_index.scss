@@ -1,3 +1,10 @@
 // Import page-specific CSS files here.
 @import "home";
 @import "showtour";
+
+.btn-primary:active {
+  background-color: #ffffff; /* Couleur souhaitée lorsque le bouton est activé */
+  border-color: #000000; /* Couleur souhaitée lorsque le bouton est activé */
+  color: #ffffff; /* Couleur souhaitée lorsque le bouton est activé */
+  border-radius: 8px;
+}
