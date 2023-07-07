@@ -6,6 +6,7 @@
       <div class="card mb-4">
         <div class="card-body">
           <h3 class="card-title"><%= @tour.user.first_name %> <%= @tour.user.last_name %>  <i class="fa-solid fa-person-hiking"></i></h3>
+          <p class="card-city">Le tour commencera à <%= @tour.city %></p>
           <span class="member-since">Membre depuis <%= @tour.user.created_at.strftime("%d/%m/%Y") %></span>
 
         </div>
@@ -54,7 +55,7 @@
 
   <div class="row">
   <div class="col text-center">
-    <%= link_to "Réservez votre tour avec #{@tour.user.first_name}",
+    <%= link_to "Réserver votre tour avec #{@tour.user.first_name}",
                 "#",
                 class: "btn btn-primary",
                 data: { user_id: @tour.user.id } %>
