@@ -1,0 +1,21 @@
+<%= render 'shared/navbar' %>
+
+<div class="container-fluid py-3">
+
+  <div class="card mb-4 py">
+    <div class="card-body">
+      <h3 class="card-title tour-description-title">bookings</h3>
+      <% @bookings.each do |booking| %>
+        <div class="card mb-3">
+          <div class="card-body">
+            <p class="card-text">Status:
+            <%=  booking.confirmation ? "Confirmed" : "Pending"  %></p>
+            <p class="card-text">Start date: <%= booking.start_date %></p>
+            <p class="card-text">End date: <%= booking.end_date %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<%= render 'shared/footer' %>

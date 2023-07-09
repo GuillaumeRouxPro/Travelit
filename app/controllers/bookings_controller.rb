@@ -2,8 +2,7 @@ require 'date'
 
 class BookingsController < ApplicationController
   include Pundit
-
-
+  skip_before_action :authenticate_user!
 
   def index
     @bookings_as_traveler = policy_scope(Booking.where(user_id: current_user.id).order(:start_date))
@@ -21,20 +20,24 @@ class BookingsController < ApplicationController
   end
 
   def create
-    @tour = Tour.find(params[:tour_id])
-    @booking = Booking.new(booking_params)
+    @tour = Tour.find(params[:booking][:tour_id])
+    start_date, end_date = params[:booking][:date_range].split(" to ")
+    @booking = Booking.new(tour_id: params[:booking][:tour_id])
+    @booking.start_date = start_date
+    @booking.end_date = end_date
     @booking.user = current_user
     @booking.tour = @tour
-    @booking.confirmation = "pending"
+    @booking.confirmation = false
     authorize @booking
-    check = check_available(@booking)
-    if check
+    check = check_available2(@booking)
+    if check == false
       redirect_back(fallback_location: tour_path(@booking.tour), notice: "Ce tour est déjà réservé !")
-    elsif @booking.save
-      redirect_to tour_path(@tour), notice: "La réservation a bien été effectuée !"
+    else @booking.save
+      redirect_to bookings_path(@booking, @tour), notice: "La réservation a bien été effectuée !"
+
       # redirect_back(fallback_location: flat_path(@booking.flat), notice: "La réservation a bien été effectuée !")
-    else
-      redirect_to tour_path(@tour), notice: "Vous ne pouvez pas demander la réservation à ces dates.", status: :unprocessable_entity
+    # else
+    #   redirect_to tour_path(@tour), notice: "Vous ne pouvez pas demander la réservation à ces dates.", status: :unprocessable_entity
       # redirect_back(fallback_location: flat_path(@booking.flat), notice: "Cet appartement est déjà réservé à ces dates.")
     end
   end
@@ -92,6 +95,17 @@ class BookingsController < ApplicationController
 
   private
 
+  def check_available2(booking)
+    check = true # we assume that the booking is availaible at first
+    # raise
+    reservations = Booking.where(tour_id: booking.tour_id)
+    if reservations.empty?
+      check = true
+    else
+      check = false # no reservation availaible
+    end
+    check
+  end
   def check_available(booking)
     check = false
     list_of_reservations = []
@@ -118,6 +132,6 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-    params.require(:booking).permit(:start_date, :end_date)
+    params.require(:booking).permit(:date_range , :tour_id)
   end
 end
