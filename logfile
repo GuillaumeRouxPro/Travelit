@@ -60,3 +60,12 @@
 2023-07-03 17:15:56.704 CEST [11775] STATEMENT:  SELECT "hobbies".* FROM "hobbies" WHERE "hobbies"."user_id" = $1
 2023-07-03 17:15:58.235 CEST [11775] ERROR:  column hobbies.user_id does not exist at character 41
 2023-07-03 17:15:58.235 CEST [11775] STATEMENT:  SELECT "hobbies".* FROM "hobbies" WHERE "hobbies"."user_id" = $1
+2023-07-09 11:41:37.499 CEST [4795] LOG:  starting PostgreSQL 14.8 (Homebrew) on x86_64-apple-darwin22.4.0, compiled by Apple clang version 14.0.3 (clang-1403.0.22.14.1), 64-bit
+2023-07-09 11:41:37.501 CEST [4795] LOG:  listening on IPv6 address "::1", port 5432
+2023-07-09 11:41:37.501 CEST [4795] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2023-07-09 11:41:37.502 CEST [4795] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2023-07-09 11:41:37.506 CEST [4796] LOG:  database system was shut down at 2023-07-09 11:41:27 CEST
+2023-07-09 11:41:37.510 CEST [4795] LOG:  database system is ready to accept connections
+2023-07-09 11:41:47.351 CEST [4836] FATAL:  database "Travelit_development" does not exist
+2023-07-09 11:41:48.966 CEST [4838] FATAL:  database "Travelit_development" does not exist
+2023-07-09 11:41:50.212 CEST [4839] FATAL:  database "Travelit_development" does not exist

@@ -1,0 +1,30 @@
+.btn-primary-search {
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  color: #ffff;
+  background-color: #85A389;
+  border: 1px solid #cdc9c9;
+  padding: 8px 24px;
+  border-radius: 50px;
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
+}
+
+.btn-primary-search:hover {
+  color: #ffff;
+  opacity: 1;
+  background-color: #85A389;
+  border: 1px solid #cdc9c9;
+  transition: 0.3 ease;
+  font-weight: bold;
+}
+
+.btn-primary-search:active {
+  color: #ffff;
+  opacity: 1;
+  background-color: #85A389;
+  border: 1px solid #cdc9c9;
+  transition: 0.3 ease;
+  font-weight: bold;
+}

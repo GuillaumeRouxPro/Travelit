@@ -1,3 +1,5 @@
+
+
 <!-- app/views/tours/index.html.erb -->
 <%= render 'shared/navbar' %>
 <%= render 'shared/banner' %>
@@ -7,11 +9,11 @@
 
 </div>
 
-<div class="pt-3 container-fluid">
+<div class="pt-4 container-fluid">
   <div class="row">
     <div class="col">
       <a href="<%= tours_path(city: 'Bali') %>">
-        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://admin.ramcotravel.com/uploads/VoyageOrganise/352bd111b8bfa322420ec5dd3b947f4aa5bc32d9.jpeg)">
+        <div class="2 card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://admin.ramcotravel.com/uploads/VoyageOrganise/352bd111b8bfa322420ec5dd3b947f4aa5bc32d9.jpeg)">
           Bali
         </div>
       </a>
@@ -54,7 +56,7 @@
           <img src="https://hips.hearstapps.com/hmg-prod/images/nature-quotes-landscape-1648265299.jpg" class="card-img-top" />
           <div class="card-trip-infos">
             <div>
-              <h3 class="card-trip-title"><%= tour.name %> - <span class="small-text"><%= tour.user.first_name %> <%= tour.user.last_name %></span></h3>
+              <h3 class="card-trip-title"><%= tour.name %> -  <span class="small-text"><%= tour.user.first_name %> <%= tour.user.last_name %></span></h3>
               <p class="card-text">
                 <% description_words = tour.description.split(' ') %>
                 <% truncated_description = description_words.take(5).join(' ') %>
