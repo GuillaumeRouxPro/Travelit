@@ -68,21 +68,28 @@
 </div>
 
   <div class="row">
+
     <% if policy(Booking.new(tour: @tour)).create? %>
       <div class="col text-center">
           <%= simple_form_for :booking, url: bookings_path, method: :post do |f| %>
-            <%= f.label :date_range, "Date" %>
-            <%= f.text_field :date_range, class: 'datepicker' %>
+            <div class="row">
+
+              <div class="col">
+                <%= f.input :Start, as: :string,
+                            wrapper_html: { class: "mb-4" },
+                            label_html: { class: "form-label text-secondary fw-bold" },
+                            input_html: { data: { controller: "flatpickr" } } %>
+              </div>
+              <div class="col">
+                <%= f.input :End, as: :string,
+                            wrapper_html: { class: "mb-4" },
+                            label_html: { class: "form-label text-secondary fw-bold" },
+                            input_html: { data: { controller: "flatpickr" } } %>
+              </div>
+            </div>
             <%= f.input :tour_id, as: :hidden, input_html: { value: @tour.id } %>
             <%= f.button :submit, "Réservez votre tour avec #{@tour.user.first_name}", class: "btn btn-primary" %>
           <% end %>
-
-
-        <%# <%= link_to "Réservez votre tour avec #{@tour.user.first_name}",
-                    "#",
-                    class: "btn btn-primary",
-                    data: { user_id: @tour.user.id } %>
-        <%# </div> %>
       </div>
     <% else %>
       <p>This is what <strong>Your tour booking</strong> looks like</p>

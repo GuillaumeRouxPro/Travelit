@@ -21,7 +21,8 @@ class BookingsController < ApplicationController
 
   def create
     @tour = Tour.find(params[:booking][:tour_id])
-    start_date, end_date = params[:booking][:date_range].split(" to ")
+    start_date = params[:booking][:Start]
+    end_date = params[:booking][:End]
     @booking = Booking.new(tour_id: params[:booking][:tour_id])
     @booking.start_date = start_date
     @booking.end_date = end_date
@@ -50,28 +51,48 @@ class BookingsController < ApplicationController
 
   def update
     @booking = Booking.find(params[:id])
-    new_booking = Booking.new(booking_params)
-    new_booking.tour = @booking.tour
-    @tour = @booking.tour
     authorize @booking
-    check = check_available(new_booking)
-    if check
-      redirect_back(fallback_location: tour_path(@booking.tour), notice: "Ce tour est déjà réservé à ces dates.")
-    elsif @booking.update(booking_params)
-      redirect_to tour_path(@tour), notice: "Votre réservation a bien été mise à jour !"
+    check = check_dates(booking_params[:start_date], booking_params[:end_date])
+    if check[:success]
+      @booking.update(booking_params)
+      flash[:notice] = check[:message]
+      redirect_to bookings_path
     else
-      redirect_to tour_path(@tour), notice: "Vous ne pouvez pas demander la réservation à ces dates.", status: :unprocessable_entity
-
+      flash[:error] = check[:message]
+      redirect_to bookings_path, status: :unprocessable_entity
     end
   end
+  # def update
+  #   raise
+  #   @booking = Booking.find(params[:id])
+  #   new_booking = Booking.new(booking_params)
+  #   new_booking.tour = @booking.tour
+  #   @tour = @booking.tour
+  #   authorize @booking
+  #   check = check_available(new_booking)
+  #   if check
+  #     redirect_back(fallback_location: tour_path(@booking.tour), notice: "Ce tour est déjà réservé à ces dates.")
+  #   elsif @booking.update(booking_params)
+  #     redirect_to tour_path(@tour), notice: "Votre réservation a bien été mise à jour !"
+  #   else
+  #     redirect_to tour_path(@tour), notice: "Vous ne pouvez pas demander la réservation à ces dates.", status: :unprocessable_entity
+
+  #   end
+  # end
 
   def destroy
     @booking = Booking.find(params[:id])
     authorize @booking
-    @tour = @booking.tour
     @booking.destroy
-    redirect_back(fallback_location: tour_path(@booking.tour), notice: "La réservation a bien été annulée !")
+    redirect_back(fallback_location: bookings_path, notice: "La réservation a bien été annulée !")
   end
+  # def destroy
+  #   @booking = Booking.find(params[:id])
+  #   authorize @booking
+  #   @tour = @booking.tour
+  #   @booking.destroy
+  #   redirect_back(fallback_location: tour_path(@booking.tour), notice: "La réservation a bien été annulée !")
+  # end
 
   def accept
     @booking = Booking.find(params[:id])
@@ -95,6 +116,18 @@ class BookingsController < ApplicationController
 
   private
 
+  def check_dates(start, end_d)
+    start = Date.parse(start)
+    end_d = Date.parse(end_d)
+
+    if start < Date.today || end_d < Date.today
+      { success: false, message: "End date or Start dates can't be in the past." }
+    elsif end_d < start
+      { success: false, message: "End date Must be later than start date." }
+    else
+      { success: true, message: "Your reservation has been updated !" }
+    end
+  end
   def check_available2(booking)
     check = true # we assume that the booking is availaible at first
     # raise
@@ -132,6 +165,6 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-    params.require(:booking).permit(:date_range , :tour_id)
+    params.require(:update).permit(:start_date, :end_date)
   end
 end
