@@ -5,10 +5,11 @@ class BookingsController < ApplicationController
   skip_before_action :authenticate_user!
 
   def index
-    @bookings_as_traveler = policy_scope(Booking.all.order(:start_date))
+    @bookings_as_traveler = policy_scope(Booking.where(user_id: current_user).order(:start_date))
     @bookings_as_guide = policy_scope(Booking.joins(:tour).where(tours: { user_id: current_user.id }).order(:start_date))
     @bookings = @bookings_as_traveler.to_a + @bookings_as_guide.to_a
     @review = Review.new
+
   end
 
   def new
@@ -30,17 +31,11 @@ class BookingsController < ApplicationController
     @booking.tour = @tour
     @booking.confirmation = false
     authorize @booking
-    check = check_available2(@booking)
-    if check == false
-      redirect_back(fallback_location: tour_path(@booking.tour), notice: "Ce tour est déjà réservé !")
-    else @booking.save
-      redirect_to bookings_path(@booking, @tour), notice: "La réservation a bien été effectuée !"
+    @booking.save
+    @tour.bookings << @booking
+    @tour.save
 
-      # redirect_back(fallback_location: flat_path(@booking.flat), notice: "La réservation a bien été effectuée !")
-    # else
-    #   redirect_to tour_path(@tour), notice: "Vous ne pouvez pas demander la réservation à ces dates.", status: :unprocessable_entity
-      # redirect_back(fallback_location: flat_path(@booking.flat), notice: "Cet appartement est déjà réservé à ces dates.")
-    end
+    redirect_to bookings_path, notice: "La réservation a bien été effectuée !"
   end
 
   def edit
@@ -130,8 +125,7 @@ class BookingsController < ApplicationController
   end
   def check_available2(booking)
     check = true # we assume that the booking is availaible at first
-    # raise
-    reservations = Booking.where(tour_id: booking.tour_id)
+    reservations = Booking.where(user_id: booking.user)
     if reservations.empty?
       check = true
     else

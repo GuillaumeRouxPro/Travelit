@@ -7,7 +7,17 @@ class BookingPolicy < ApplicationPolicy
   end
 
   def create?
-    user != record.tour.user
+    check = true
+    # raise
+    if user == record.tour.user
+      check = false
+    end
+    user.bookings.each do |userbook|
+      if record.tour.bookings.include?(userbook)
+        return false
+      end
+    end
+    check
   end
 
   def show?
