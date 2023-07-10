@@ -69,3 +69,26 @@
 2023-07-09 11:41:47.351 CEST [4836] FATAL:  database "Travelit_development" does not exist
 2023-07-09 11:41:48.966 CEST [4838] FATAL:  database "Travelit_development" does not exist
 2023-07-09 11:41:50.212 CEST [4839] FATAL:  database "Travelit_development" does not exist
+2023-07-09 15:06:17.276 CEST [4795] LOG:  received smart shutdown request
+2023-07-09 15:06:17.277 CEST [4795] LOG:  background worker "logical replication launcher" (PID 4802) exited with exit code 1
+2023-07-09 15:06:17.277 CEST [4797] LOG:  shutting down
+2023-07-09 15:06:17.288 CEST [4795] LOG:  database system is shut down
+2023-07-10 15:39:29.925 CEST [8918] LOG:  starting PostgreSQL 14.8 (Homebrew) on x86_64-apple-darwin22.4.0, compiled by Apple clang version 14.0.3 (clang-1403.0.22.14.1), 64-bit
+2023-07-10 15:39:29.927 CEST [8918] LOG:  listening on IPv6 address "::1", port 5432
+2023-07-10 15:39:29.927 CEST [8918] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2023-07-10 15:39:29.928 CEST [8918] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2023-07-10 15:39:29.932 CEST [8919] LOG:  database system was shut down at 2023-07-10 15:39:26 CEST
+2023-07-10 15:39:29.935 CEST [8918] LOG:  database system is ready to accept connections
+2023-07-10 15:39:45.969 CEST [8971] FATAL:  database "Travelit_development" does not exist
+2023-07-10 15:39:47.483 CEST [8973] FATAL:  database "Travelit_development" does not exist
+2023-07-10 15:39:48.700 CEST [8974] FATAL:  database "Travelit_development" does not exist
+2023-07-10 16:18:43.421 CEST [8918] LOG:  received smart shutdown request
+2023-07-10 16:18:43.422 CEST [8918] LOG:  background worker "logical replication launcher" (PID 8925) exited with exit code 1
+2023-07-10 16:18:43.422 CEST [8920] LOG:  shutting down
+2023-07-10 16:18:43.433 CEST [8918] LOG:  database system is shut down
+2023-07-10 16:21:17.986 CEST [2049] LOG:  starting PostgreSQL 14.8 (Homebrew) on x86_64-apple-darwin22.4.0, compiled by Apple clang version 14.0.3 (clang-1403.0.22.14.1), 64-bit
+2023-07-10 16:21:17.989 CEST [2049] LOG:  listening on IPv6 address "::1", port 5432
+2023-07-10 16:21:17.989 CEST [2049] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2023-07-10 16:21:17.989 CEST [2049] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2023-07-10 16:21:17.994 CEST [2050] LOG:  database system was shut down at 2023-07-10 16:21:14 CEST
+2023-07-10 16:21:17.997 CEST [2049] LOG:  database system is ready to accept connections

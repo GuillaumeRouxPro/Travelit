@@ -19,7 +19,6 @@ Rails.application.routes.draw do
 
     #resources :tours do
     #resources :bookings, only: [:new, :create]
-    #resources :reviews, only: [:index, :create]
   #end
   #patch 'accept'
      # patch 'refuse'

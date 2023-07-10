@@ -10,6 +10,31 @@
 @import "search-form-guide";
 @import "create-tour-form";
 
+//REVIEW
+.fa-star {
+  color: #F1C27B;
+}
+
+.btn-primary {
+  background-color: #A2CDB0;;
+  border-color: #85A389;
+  color: #ffffff;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.btn-primary:hover {
+  font-weight: bold;
+  background-color: #85A389;
+  border-color: #A2CDB0;
+  color: #ffffff;
+  border-radius: 6px;
+}
+
+
+
 .btn-primary-ghost {
   color: #ffff;
   background-color: transparent;

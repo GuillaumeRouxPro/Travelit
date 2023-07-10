@@ -2,6 +2,7 @@
 
 <!-- app/views/tours/index.html.erb -->
 <%= render 'shared/navbar' %>
+
 <%= render 'shared/banner' %>
 
 
@@ -48,7 +49,7 @@
 
 
 <div class="container-fluid">
-  <h2 class="pt-4">Trouvez votre guide</h2>
+  <h2 class="pt-4">Find your guide</h2>
   <div class="row">
     <% @tours.each do |tour| %>
       <div class="col-md-6 col-lg-4">
@@ -56,7 +57,7 @@
           <img src="https://hips.hearstapps.com/hmg-prod/images/nature-quotes-landscape-1648265299.jpg" class="card-img-top" />
           <div class="card-trip-infos">
             <div>
-              <h3 class="card-trip-title"><%= tour.name %> -  <span class="small-text"><%= tour.user.first_name %> <%= tour.user.last_name %></span></h3>
+              <h3 class="card-trip-title"> <%= tour.city %>- <%= tour.name %> -  <span class="small-text"><%= tour.user.first_name %> <%= tour.user.last_name %></span></h3>
               <p class="card-text">
                 <% description_words = tour.description.split(' ') %>
                 <% truncated_description = description_words.take(5).join(' ') %>
