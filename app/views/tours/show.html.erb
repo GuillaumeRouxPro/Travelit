@@ -53,19 +53,27 @@
   </div>
 
   <div class="row">
-  <div class="col text-center">
-    <%= simple_form_for :booking, url: bookings_path, method: :post do |f| %>
-      <%= f.label :date_range, "Date" %>
-      <%= f.text_field :date_range, class: 'datepicker' %>
-      <%= f.input :tour_id, as: :hidden, input_html: { value: @tour.id } %>
-      <%= f.button :submit, "Réservez votre tour avec #{@tour.user.first_name}", class: "btn btn-primary" %>
+    <% if policy(Booking.new(tour: @tour)).create? %>
+      <div class="col text-center">
+          <%= simple_form_for :booking, url: bookings_path, method: :post do |f| %>
+            <%= f.label :date_range, "Date" %>
+            <%= f.text_field :date_range, class: 'datepicker' %>
+            <%= f.input :tour_id, as: :hidden, input_html: { value: @tour.id } %>
+            <%= f.button :submit, "Réservez votre tour avec #{@tour.user.first_name}", class: "btn btn-primary" %>
+          <% end %>
+
+
+        <%# <%= link_to "Réservez votre tour avec #{@tour.user.first_name}",
+                    "#",
+                    class: "btn btn-primary",
+                    data: { user_id: @tour.user.id } %>
+        <%# </div> %>
+      </div>
+    <% else %>
+      <p>This is what <strong>Your tour booking</strong> looks like</p>
     <% end %>
-    <%# <%= link_to "Réservez votre tour avec #{@tour.user.first_name}",
-                "#",
-                class: "btn btn-primary",
-                data: { user_id: @tour.user.id } %>
-  <%# </div> %>
-</div>
+  </div>
+
 <div class="pt-5 container-fluid d-flex justify-content-center">
     <div>
       <p><i class="fa-sharp fa-solid fa-calendar fa-2x"></i></p>

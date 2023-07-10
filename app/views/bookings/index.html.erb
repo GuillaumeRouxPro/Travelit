@@ -4,10 +4,12 @@
 
   <div class="card mb-4 py">
     <div class="card-body">
-      <h3 class="card-title tour-description-title">bookings</h3>
+      <h3 class="card-title tour-description-title">Bookings</h3>
       <% @bookings.each do |booking| %>
         <div class="card mb-3">
           <div class="card-body">
+            <p class="card-text">Tour name:
+            <%=  booking.tour.name  %></p>
             <p class="card-text">Status:
             <%=  booking.confirmation ? "Confirmed" : "Pending"  %></p>
             <p class="card-text">Start date: <%= booking.start_date %></p>
