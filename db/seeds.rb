@@ -37,6 +37,8 @@ puts 'Faux utilisateurs créés !'
     user_id: User.pluck(:id).sample
   )
 
+
+
   file = URI.open('https://www.autour-dumonde.fr/sx-content/uploads/cms/img-presentation-1.jpg')
   tour.photos.attach(io: file, filename: 'photo.jpg')
 

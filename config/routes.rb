@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "tours#index"
 
+  post '/become_guide', to: 'users#become_guide', as: 'become_guide'
+
+
   get '/tours/new', to: 'tours#new', as: 'new_tour'
   resources :bookings
   resources :tours do
@@ -16,7 +19,6 @@ Rails.application.routes.draw do
 
     #resources :tours do
     #resources :bookings, only: [:new, :create]
-    #resources :reviews, only: [:index, :create]
   #end
   #patch 'accept'
      # patch 'refuse'

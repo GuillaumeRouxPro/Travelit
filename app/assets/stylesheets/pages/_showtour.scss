@@ -1,4 +1,5 @@
 /* Centrer le bouton "Réservez votre guide" */
+
 .reserve-guide-btn {
   display: block;
   margin: 0 auto;
@@ -41,8 +42,8 @@
 .custom-button {
   /* Vos styles personnalisés */
   padding: 5px 30px;
-  border-radius: 2px;
-  background: #ba8c8c;
+  border-radius: 6px;
+  background-color: #F1C27B;
   color: #fff;
   border: 1px solid transparent;
   /* ... */
@@ -56,4 +57,30 @@
 .text-bold {
   padding-top: 10px;
   font-size: 12px;
+}
+
+
+.card-city {
+  font-size: 16px;
+  color: #000000;
+  font-weight: 100;
+}
+
+.stars-container {
+  padding-bottom: 3px;
+  padding-left: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.stars-container i {
+  margin-right: 10px; /* Ajustez la valeur selon votre préférence */
+}
+
+.review-description {
+  display: flex;
+  margin-bottom: 30px;
+  color: #696565;
+  font-size: 14px;
+  font-weight: 100;
 }

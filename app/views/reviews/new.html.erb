@@ -1,0 +1,13 @@
+<%= render 'shared/navbar' %>
+
+<div class="pt-3 container-fluid">
+<%= simple_form_for(@review) do |f| %>
+  <%= f.input :rating, label: "Choose between 1 and 5", collection: 1..5, include_blank: false %>
+  <%= f.input :comment, label: "Comment" %>
+  <%= f.submit "Create my review", class: "btn btn-primary" %>
+<% end %>
+
+</div>
+
+
+<%= render 'shared/footer' %>

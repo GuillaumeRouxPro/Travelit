@@ -14,7 +14,8 @@
     <div class="col-md-4">
       <div class="card mb-4">
         <div class="card-body">
-          <h3 class="card-title tour-description-title">Description du tour</h3>
+          <h3 class="card-title tour-description-title">Description</h3>
+          <p class="card-city">Tour will start in <%= @tour.city %></p>
           <p class="card-text"><%= @tour.description %></p>
             <div class="text-center"> <!-- Ajout de la classe text-center -->
             <button class="custom-button" disabled>
@@ -24,6 +25,7 @@
         </div>
       </div>
     </div>
+
     <div class="col-md-4">
       <div class="card mb-4">
         <div class="card-body">
@@ -38,23 +40,36 @@
     </div>
   </div>
 
-  <div class="card mb-4">
-    <div class="card-body">
-      <h3 class="card-title tour-description-title">Reviews</h3>
-      <% @tour.reviews.each do |review| %>
-        <div class="card mb-3">
-          <div class="card-body">
-            <p class="card-text">Rating: <%= review.rating %></p>
-            <p class="card-text"><%= review.comment %></p>
-          </div>
-        </div>
-      <% end %>
+<div class="card mb-4">
+  <div class="card-body">
+    <h3 class="card-title tour-description-title">Reviews</h3>
+    <div class="d-flex align-items-center">
+      <p class="pt-3 mr-2">Martin Scorcesse</p>
+      <div class="stars-container">
+        <i class="fa-sharp fa-solid fa-star"></i>
+        <i class="fa-sharp fa-solid fa-star"></i>
+        <i class="fa-sharp fa-solid fa-star"></i>
+        <i class="fa-sharp fa-solid fa-star"></i>
+        <i class="fa-sharp fa-solid fa-star"></i>
+      </div>
     </div>
+          <p class="review-description">"Best tour of my life, thought I was in a movie thank you for this amazing esperience"</p>
+
+
+    <% @tour.reviews.each do |review| %>
+      <div class="card mb-3">
+        <div class="card-body">
+          <p class="card-text">Rating: <%= review.rating %></p>
+          <p class="card-text"><%= review.comment %></p>
+        </div>
+      </div>
+    <% end %>
   </div>
+</div>
 
   <div class="row">
   <div class="col text-center">
-    <%= link_to "Réservez votre tour avec #{@tour.user.first_name}",
+    <%= link_to "Réserver votre tour avec #{@tour.user.first_name}",
                 "#",
                 class: "btn btn-primary",
                 data: { user_id: @tour.user.id } %>

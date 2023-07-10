@@ -2,9 +2,46 @@
   display: inline-block;
 }
 
+.btn-primary-search-center {
+  color: #ffff;
+  width: 100%;
+  background-color: #85A389;
+  border: 1px solid #cdc9c9;
+  padding: 8px 40px;
+  border-radius: 50px;
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
+  margin-bottom: 200px;
+}
+
+.btn-primary-search-center:hover {
+  color: #ffff;
+  opacity: 1;
+  background-color: #85A389;
+  border: 1px solid #cdc9c9;
+  transition: 0.3 ease;
+  font-weight: bold;
+}
+
+.btn-primary-search-center:active {
+  color: #ffff;
+  opacity: 1;
+  background-color: #85A389;
+  border: 1px solid #cdc9c9;
+  transition: 0.3 ease;
+  font-weight: bold;
+}
+
 .tag-selector {
   position: absolute;
   transform: scale(0);
+}
+
+.label-ville,
+.label-number_of_travlers,
+.label-hobby {
+  font-family: 'Roboto Slab', serif;
+  letter-spacing: 0.5px;
 }
 
 .tag-selector + label {
@@ -14,15 +51,17 @@
   border-radius: 50rem;
   padding: 0.3rem 1rem;
   background-color: #ffffff;
-  color: #000000;
-  border: 1px solid #000000;
+  color: #525050;
+  border: 1px solid #525050;
   margin-bottom: 0.4rem;
   width: max-content;
 }
 
 .tag-selector:checked + label {
-  background-color: #000000;
-  color: white;
+  background-color: #F1C27B;
+  color: #ffff;
+  border: 1px solid #ffff;
+  font-weight: 300;
 }
 
 .visually-hidden {
@@ -62,7 +101,7 @@
   border: 1px solid #ccc;
   border-radius: 4px;
   background-color: #f7f7f7;
-  color: #333;
+  color: #cdc9c9;
   width: 100%;
   transition: border-color 0.3s ease;
 }
@@ -75,7 +114,7 @@
 
 .custom-select option {
   background-color: #fff; /* Couleur de fond des options */
-  color: #333; /* Couleur du texte des options */
+  color: #cdc9c9; /* Couleur du texte des options */
 }
 
 .custom-select:hover {
