@@ -10,10 +10,8 @@
 @import "search-form-guide";
 @import "create-tour-form";
 
-//REVIEW
-.fa-star {
-  color: #F1C27B;
-}
+
+
 
 .btn-primary {
   background-color: #A2CDB0;;
@@ -69,11 +67,10 @@
 //}
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Roboto Slab', serif;
-  letter-spacing: 0.5px;
+  font-weight: 900;
+  font-family: 'Montserrat', sans-serif;
 }
 
 p, a, li, input, label {
   font-family: 'Quattrocento Sans', sans-serif;
-  letter-spacing: 1px;
 }
