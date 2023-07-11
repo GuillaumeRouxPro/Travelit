@@ -54,6 +54,11 @@ class ToursController < ApplicationController
     @tours = Tour.find(params[:tour_ids])
   end
 
+  def my_tours
+    user = current_user
+    @tours = Tour.where(user_id: user.id)
+  end
+
   def search
     @tours = Tour.search(params[:hobbies], params[:city], params[:date], params[:num_travelers])
   end

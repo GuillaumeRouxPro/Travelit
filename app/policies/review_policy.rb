@@ -14,4 +14,5 @@ class ReviewPolicy < ApplicationPolicy
   def resolve
     scope.all # Renvoie tous les enregistrements de Tour
   end
+  
 end

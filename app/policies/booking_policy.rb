@@ -37,7 +37,7 @@ class BookingPolicy < ApplicationPolicy
   end
 
 
-  def accept?
+  def accept_refuse?
     true
   end
 

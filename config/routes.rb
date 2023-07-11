@@ -9,10 +9,15 @@ Rails.application.routes.draw do
 
 
   get '/tours/new', to: 'tours#new', as: 'new_tour'
-  resources :bookings
+  resources :bookings do
+    collection do
+      post :accept_refuse
+    end
+  end
   resources :tours do
     collection do
       get :top_match
+      get :my_tours, as: :my_tours
     end
   end
   resources :hobbies, only: [:index, :new, :create]

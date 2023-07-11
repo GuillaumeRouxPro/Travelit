@@ -5,48 +5,55 @@
   <div class="card mb-4 py">
     <div class="card-body">
       <h3 class="card-title tour-description-title">Bookings</h3>
-      <% @bookings.each do |booking| %>
-        <div class="card mb-3">
-          <div class="card-body">
-            <p class="card-text">Tour name:
-            <%=  booking.tour.name  %></p>
-            <p class="card-text">Status:
-            <%=  booking.confirmation ? "Confirmed" : "Pending"  %></p>
-            <p class="card-text">Start date: <%= booking.start_date %></p>
-            <p class="card-text">End date:<%= booking.end_date %></p>
-            <button id="edit-button" class="btn btn-dark">Edit</button>
-            <div class="delelet-butt" style = "display: inline-block">
-              <%= simple_form_for :delete, url: booking_path(booking), method: :delete do |f| %>
-                <%= f.button :submit, "Delete", class: "btn btn-dark" %>
-              <% end %>
-            </div>
-            <button id="edit-button" class="btn btn-dark">Message</button>
-            <%= simple_form_for :update , url: booking_path(booking), method: :put do |f|%>
-              <div class="row">
-                <div class="col date-picker" style="display: none;">
-                  <%= f.input :start_date, as: :string,
-                              wrapper_html: { class: "mb-4" },
-                              label_html: { class: "form-label text-secondary fw-bold" },
-                              input_html: { value: booking.start_date || Date.today, data: { controller: "flatpickr" } } %>
-                </div>
-                <div class="col date-picker"style="display: none;">
-                  <%= f.input :end_date, as: :string,
-                              wrapper_html: { class: "mb-4" },
-                              label_html: { class: "form-label text-secondary fw-bold" },
-                              input_html: { value: booking.start_date || Date.today, data: { controller: "flatpickr" } } %>
-                </div>
-              </div>
-              <div class="update-button" style = "display: none">
-                <%= f.button :submit, "Change your date", class: "btn btn-primary" %>
-              </div>
-            <% end %>
-            <div class="cancel-button"  style = "display: none">
-              <button id="cancel-button" class= "btn btn-danger my-2 ">Cancel</button>
-            </div>
-          </div>
-
+      <% if  @bookings.empty?%>
+        <div class="alert alert-danger">
+          <p>You have no Bookings</p>
         </div>
+      <% else %>
+        <% @bookings.each do |booking| %>
+          <div class="card mb-3">
+            <div class="card-body">
+              <p class="card-text">Tour name:
+              <%=  booking.tour.name  %></p>
+              <p class="card-text">Status:
+              <%=  booking.confirmation ? "Confirmed" : "Pending"  %></p>
+              <p class="card-text">Start date: <%= booking.start_date %></p>
+              <p class="card-text">End date:<%= booking.end_date %></p>
+              <button id="edit-button" class="btn btn-dark">Edit</button>
+              <div class="delelet-butt" style = "display: inline-block">
+                <%= simple_form_for :delete, url: booking_path(booking), method: :delete do |f| %>
+                  <%= f.button :submit, "Delete", class: "btn btn-dark" %>
+                <% end %>
+              </div>
+              <button id="edit-button" class="btn btn-dark">Message</button>
+              <%= simple_form_for :update , url: booking_path(booking), method: :put do |f|%>
+                <div class="row">
+                  <div class="col date-picker" style="display: none;">
+                    <%= f.input :start_date, as: :string,
+                                wrapper_html: { class: "mb-4" },
+                                label_html: { class: "form-label text-secondary fw-bold" },
+                                input_html: { value: booking.start_date || Date.today, data: { controller: "flatpickr" } } %>
+                  </div>
+                  <div class="col date-picker"style="display: none;">
+                    <%= f.input :end_date, as: :string,
+                                wrapper_html: { class: "mb-4" },
+                                label_html: { class: "form-label text-secondary fw-bold" },
+                                input_html: { value: booking.start_date || Date.today, data: { controller: "flatpickr" } } %>
+                  </div>
+                </div>
+                <div class="update-button" style = "display: none">
+                  <%= f.button :submit, "Change your date", class: "btn btn-primary" %>
+                </div>
+              <% end %>
+              <div class="cancel-button"  style = "display: none">
+                <button id="cancel-button" class= "btn btn-danger my-2 ">Cancel</button>
+              </div>
+            </div>
+
+          </div>
+        <% end %>
       <% end %>
+
     </div>
   </div>
   <% flash.each do |type, message| %>

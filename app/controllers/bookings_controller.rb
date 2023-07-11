@@ -89,24 +89,16 @@ class BookingsController < ApplicationController
   #   redirect_back(fallback_location: tour_path(@booking.tour), notice: "La réservation a bien été annulée !")
   # end
 
-  def accept
-    @booking = Booking.find(params[:id])
-    @tour = @booking.tour
-    check = check_available(@booking)
+  def accept_refuse
+    @booking = Booking.find(params[:update][:booking_id].to_i)
     authorize @booking
-    if !check
-      @booking.update(confirmation: "accepted")
-      redirect_back(fallback_location: tour_path(@booking.tour), notice: "La réservation a été acceptée !")
+    if params[:commit] == "Accept"
+      @booking.update(confirmation: true)
+      redirect_to my_tours_tours_path, notice: "The reservation has been accepted !"
     else
-      redirect_back(fallback_location: tour_path(@booking.tour), notice: "Vous ne pouvez pas accepter cette réservation")
+      @booking.destroy
+      redirect_to my_tours_tours_path, notice: "The booking has been deleted"
     end
-  end
-
-  def refuse
-    @booking = Booking.find(params[:id])
-    @booking.update(confirmation: "refused")
-    authorize @booking
-    redirect_back(fallback_location: tour_path(@booking.tour), notice: "La réservation a été refusée !")
   end
 
   private
