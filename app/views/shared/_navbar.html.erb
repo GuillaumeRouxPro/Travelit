@@ -1,4 +1,4 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon ">
   <div class="container-fluid">
     <%= link_to root_path, class: "navbar-brand" do %>
       <%= image_tag("Travelit.svg", class: "logo-img") %>
@@ -26,7 +26,7 @@
               Traveller
             </a>
             <ul class="pb-2 pt-2 dropdown-menu mx-auto custom-dropdown-menu" aria-labelledby="travellerDropdown">
-              <li><%= link_to "Find a tour", new_tour_path, class: "pb-2 pt-2 dropdown-item mx-auto custom-dropdown-item" %></li>
+              <li><%= link_to "Find a tour", home_search_path, class: "pb-2 pt-2 dropdown-item mx-auto custom-dropdown-item" %></li>
               <li><%= link_to "My bookings", bookings_path, class: "pb-2 pt-2 dropdown-item mx-auto custom-dropdown-item" %></li>
             </ul>
           </li>

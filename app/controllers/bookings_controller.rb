@@ -35,7 +35,7 @@ class BookingsController < ApplicationController
     @tour.bookings << @booking
     @tour.save
 
-    redirect_to bookings_path, notice: "La réservation a bien été effectuée !"
+    redirect_to bookings_path, notice: "The reservation has been submitted !"
   end
 
   def edit
@@ -57,29 +57,13 @@ class BookingsController < ApplicationController
       redirect_to bookings_path, status: :unprocessable_entity
     end
   end
-  # def update
-  #   raise
-  #   @booking = Booking.find(params[:id])
-  #   new_booking = Booking.new(booking_params)
-  #   new_booking.tour = @booking.tour
-  #   @tour = @booking.tour
-  #   authorize @booking
-  #   check = check_available(new_booking)
-  #   if check
-  #     redirect_back(fallback_location: tour_path(@booking.tour), notice: "Ce tour est déjà réservé à ces dates.")
-  #   elsif @booking.update(booking_params)
-  #     redirect_to tour_path(@tour), notice: "Votre réservation a bien été mise à jour !"
-  #   else
-  #     redirect_to tour_path(@tour), notice: "Vous ne pouvez pas demander la réservation à ces dates.", status: :unprocessable_entity
 
-  #   end
-  # end
 
   def destroy
     @booking = Booking.find(params[:id])
     authorize @booking
     @booking.destroy
-    redirect_back(fallback_location: bookings_path, notice: "La réservation a bien été annulée !")
+    redirect_back(fallback_location: bookings_path)
   end
   # def destroy
   #   @booking = Booking.find(params[:id])
