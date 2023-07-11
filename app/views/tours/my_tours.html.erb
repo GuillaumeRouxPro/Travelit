@@ -1,0 +1,67 @@
+
+
+<div class="container-fluid py-3">
+
+  <div class="card mb-4 py" >
+    <div class="card-body">
+      <h3 class="card-title tour-description-title">My Tours</h3>
+      <% if  @tours.empty?%>
+       <div class="alert alert-danger">
+        <p>You have no Tours created</p>
+        </div>
+      <% else %>
+        <% @tours.each do |tour| %>
+          <div class="card mb-3">
+            <div class="card-body">
+              <p class="card-text">Tour name:
+              <%=  tour.name  %></p>
+              <div class="card-body" data-controller="booking">
+                <% if tour.bookings.empty? %>
+                  <p> You have no booking for this <%= tour.name %></p>
+                <% else %>
+                  <div class="card-text">
+                    <button id="view-button"
+                    data-action="click->booking#showBookingList"
+                    class="btn btn-dark">View bookings</button>
+                  </div>
+                  <div class="booking-list py-2"  style = "display: none" data-booking-target="bookingList">
+                    <% tour.bookings.each do |booking| %>
+                        <div class="booking-info py-2">
+                          <p class="card-text">Booker name:
+                          <strong><%=  booking.user.first_name  %></strong></p>
+                            <%= simple_form_for :update, url: accept_refuse_bookings_path do |f|%>
+                              <%= f.input :booking_id, as: :hidden, input_html: { value: booking.id } %>
+                              <% if booking.confirmation %>
+                                <div class="accepted-btn-view">
+                                  <p><strong>Booking Accepted </strong></p>
+                                  <%= f.button :submit, "Refuse to cancel", class: "btn btn-primary" %>
+                                </div>
+                              <% else %>
+                                <div class="buttons-display-inline">
+                                  <%= f.button :submit, "Accept", class: "btn btn-primary" %>
+                                  <%= f.button :submit, "Refuse", class: "btn btn-primary" %>
+                                </div>
+                              <% end %>
+                            <% end %>
+                        </div>
+                      <%end %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+
+          </div>
+        <% end %>
+      <% end %>
+
+    </div>
+  </div>
+  <% flash.each do |type, message| %>
+    <div class="alert alert-<%= type == "notice" ? 'success' : 'danger' %>">
+      <%= message %>
+    </div>
+  <% end %>
+</div>
+
+
+<%= render 'shared/footer' %>

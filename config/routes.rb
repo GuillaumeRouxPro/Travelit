@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get 'home/index'
   get 'home/search', to: 'home#search'
-  get 'home/result', to: 'home#result',  as: 'home_result'
+  get 'home/result', to: 'home#result', as: 'home_result'
   devise_for :users
   root to: "tours#index"
 
@@ -9,10 +9,15 @@ Rails.application.routes.draw do
 
 
   get '/tours/new', to: 'tours#new', as: 'new_tour'
-  resources :bookings
+  resources :bookings do
+    collection do
+      post :accept_refuse
+    end
+  end
   resources :tours do
     collection do
       get :top_match
+      get :my_tours, as: :my_tours
     end
   end
   resources :hobbies, only: [:index, :new, :create]

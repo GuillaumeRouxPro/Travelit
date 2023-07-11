@@ -51,3 +51,27 @@
   font-weight: lighter;
   opacity: .7;
 }
+
+.booking-info {
+  display: block;
+  justify-content: space-between;
+  align-items: center;
+  border: solid;
+  .card-text {
+    margin-left: 10px;
+
+  }
+  .accepted-btn-view {
+    margin: 30px 30px;
+  }
+}
+
+.buttons-display-inline {
+  display: flex;
+  justify-content: space-around;
+  .btn {
+    margin-left: 30px;
+    margin-right: 30px;
+    padding: 5px 5px;
+  }
+}

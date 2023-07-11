@@ -31,15 +31,12 @@ puts 'Faux utilisateurs créés !'
   tour = Tour.new(
     name: Faker::Lorem.word,
     city: Faker::Address.city,
-    description: Faker::Lorem.paragraph,
+    description: Faker::Book.title,
     price: Faker::Number.between(from: 10, to: 100),
     number_of_travlers: Faker::Number.between(from: 1, to: 5),
     user_id: User.pluck(:id).sample
   )
-
-
-
-  file = URI.open('https://www.autour-dumonde.fr/sx-content/uploads/cms/img-presentation-1.jpg')
+  file = URI.open(Faker::LoremFlickr.image(size: "320x240", search_terms: ['travel'], match_all: true))
   tour.photos.attach(io: file, filename: 'photo.jpg')
 
   tour.save!
