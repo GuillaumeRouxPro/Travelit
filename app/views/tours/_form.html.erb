@@ -4,11 +4,11 @@
     <%# <%= f.error_notification %>
     <%# <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
     <%= f.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
-    <%= f.input :name, label: 'Nom du tour' %>
-    <%= f.input :description %>
-    <%= f.input :city %>
-    <%= f.input :price, label: 'Prix' %>
-    <%= f.input :number_of_travlers, label: 'Nombre de voyageurs maximum' %>
+    <%= f.input :name, label: 'Name of your tour' %>
+    <%= f.input :description, label: 'Description' %>
+    <%= f.input :city, label: 'City'%>
+    <%= f.input :price, label: 'Price' %>
+    <%= f.input :number_of_travlers, label: 'Maximum number of travellers for a tour' %>
 
       <button type="button" class="pt-2 btn btn-primary-search" id="add_hobby_button-1">Add to Hobbies</button>
 
