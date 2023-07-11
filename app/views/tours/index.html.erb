@@ -8,16 +8,16 @@
 
 </div>
 
-<div class="pt-4 container-fluid">
+<div class="p-3 container-fluid">
   <div class="row">
-    <div class="col">
+    <div class="p-2 col">
       <a href="<%= tours_path(city: 'Bali') %>">
-        <div class="2 card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://admin.ramcotravel.com/uploads/VoyageOrganise/352bd111b8bfa322420ec5dd3b947f4aa5bc32d9.jpeg)">
+        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://admin.ramcotravel.com/uploads/VoyageOrganise/352bd111b8bfa322420ec5dd3b947f4aa5bc32d9.jpeg)">
           Bali
         </div>
       </a>
     </div>
-    <div class="col">
+    <div class="p-2 col">
       <a href="<%= tours_path(city: 'Athens') %>">
         <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://i.guim.co.uk/img/media/de3366adb21f4f8e3f7d9a82809f2ba9a3ce1182/0_113_3508_2106/master/3508.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=1880e2c7177de6988c519fa97036ab30)">
           Athens
@@ -26,15 +26,15 @@
     </div>
   </div>
 
-  <div class="pt-3 row">
-    <div class="col">
+  <div class="row">
+    <div class="p-2 col">
       <a href="<%= tours_path(city: 'Paris') %>">
         <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://images.adsttc.com/media/images/5d44/14fa/284d/d1fd/3a00/003d/large_jpg/eiffel-tower-in-paris-151-medium.jpg?1564742900)">
           Paris
         </div>
       </a>
     </div>
-    <div class="col">
+    <div class="p-2 col">
       <a href="<%= tours_path(city: 'London') %>">
         <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://wallpaperaccess.com/full/32514.jpg)">
           London
@@ -56,14 +56,15 @@
           <img src="https://hips.hearstapps.com/hmg-prod/images/nature-quotes-landscape-1648265299.jpg" class="card-img-top" />
           <div class="card-trip-infos">
             <div>
-              <h3 class="card-trip-title"> <%= tour.city %> - <%= tour.name %> -  <span class="small-text"><%= tour.user.first_name %> <%= tour.user.last_name %></span></h3>
-              <p class="card-text">
+              <h3 class="card-trip-title"> <%= tour.city %> - <%= tour.name %></h3>
+              <span class="small-text">By <%= tour.user.first_name %> <%= tour.user.last_name %></span>
+              <p class="pt-2 card-text">
                 <% description_words = tour.description.split(' ') %>
-                <% truncated_description = description_words.take(5).join(' ') %>
+                <% truncated_description = description_words.take(10).join(' ') %>
                 <%= truncated_description %> ...
               </p>
             </div>
-            <h4 class="card-trip-pricing"><%= tour.price %><span class="small-text">€</span></h4>
+            <h4 class="card-trip-pricing"><%= tour.price %><span class="small-text"> €</span></h4>
           </div>
         </div>
       </div>
