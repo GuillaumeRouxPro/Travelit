@@ -15,16 +15,16 @@
             <div class="card-body">
               <p class="card-text">Tour name:
               <%=  tour.name  %></p>
-              <div class="card-body" data-controller="booking">
+              <div class="card-body" data-controller="tour">
                 <% if tour.bookings.empty? %>
                   <p> You have no booking for this <%= tour.name %></p>
                 <% else %>
                   <div class="card-text">
                     <button id="view-button"
-                    data-action="click->booking#showBookingList"
+                    data-action="click->tour#showBookingList"
                     class="btn btn-dark">View bookings</button>
                   </div>
-                  <div class="booking-list py-2"  style = "display: none" data-booking-target="bookingList">
+                  <div class="booking-list py-2"  style = "display: none" data-tour-target="bookingList">
                     <% tour.bookings.each do |booking| %>
                         <div class="booking-info py-2">
                           <p class="card-text">Booker name:
