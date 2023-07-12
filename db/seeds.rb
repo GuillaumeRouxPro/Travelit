@@ -26,15 +26,19 @@ Hobby.destroy_all
 end
 
 puts 'Faux utilisateurs créés !'
+image = "1-view-of-the-urban-landscape-and-the-port-of-marseille-at-sunset-mauro-marletto_f7fvg8"
+
 
 10.times do
   tour = Tour.new(
+
     name: Faker::Lorem.word,
     city: Faker::Address.city,
     description: Faker::Book.title,
     price: Faker::Number.between(from: 10, to: 100),
     number_of_travlers: Faker::Number.between(from: 1, to: 5),
     user_id: User.pluck(:id).sample
+
   )
   file = URI.open(Faker::LoremFlickr.image(size: "320x240", search_terms: ['travel'], match_all: true))
   tour.photos.attach(io: file, filename: 'photo.jpg')
@@ -45,10 +49,13 @@ end
 puts 'Faux tours créés !'
 
 li_hobbies = [
-  Hobby.create!(name: "Football", icon: "link"), Hobby.create!(name: "Tennis", icon: "link"),
-  Hobby.create!(name: "Swimming", icon: "link"),
+  Hobby.create!(name: "Football", icon: "link"),
+  Hobby.create!(name: "Surf", icon: "link"),
   Hobby.create!(name: "Running", icon: "link"),
-  Hobby.create!(name: "Golf", icon: "link"),
+  Hobby.create!(name: "Art", icon: "link"),
+  Hobby.create!(name: "Food", icon: "link"),
+  Hobby.create!(name: "Cinema", icon: "link"),
+  Hobby.create!(name: "Music", icon: "link"),
   Hobby.create!(name: "Martial arts", icon: "link")
 ]
 
