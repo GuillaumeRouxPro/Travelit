@@ -1,6 +1,14 @@
 
-<div class="container-fluid">
-  <div class="pt-3" class="row">
+<div class="container-fluid py-4">
+  <div class="pt-1 row">
+    <div class="col-md-4">
+      <div class="card-trip card mb-4">
+        <%= cl_image_tag @tour.photos.first.key, height: 300, width: 400, crop: :fill  %>
+      </div>
+    </div>
+  </div>
+
+  <div class="pt-3 row">
     <div class="col-md-4">
       <div class="card mb-4">
         <div class="card-body">
@@ -29,9 +37,9 @@
       <div class="card mb-4">
         <div class="card-body">
           <h3 class="card-title tour-description-title">Hobbies</h3>
-          <ul class="list-group list-group-flush">
-            <% @tour.user.hobbies.each do |hobby| %>
-              <li class="list-group-item"><%= hobby.name %></li>
+          <ul class="list-group list-group-flush py-3">
+            <% @tour.user.user_hobbies.each do |user_hobby| %>
+                <li class="list-group-item custom-button-appoval"><%= user_hobby.hobby.name %></li>
             <% end %>
           </ul>
         </div>
@@ -67,7 +75,6 @@
 </div>
 
   <div class="row">
-
     <% if policy(Booking.new(tour: @tour)).create? %>
       <div class="col text-center">
           <%= simple_form_for :booking, url: bookings_path, method: :post do |f| %>

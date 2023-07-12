@@ -46,7 +46,6 @@
       <div class="col-md-6 col-lg-4">
         <div class="card-trip card mb-4" onclick="redirectToTour('<%= tour_path(tour) %>')">
           <%= cl_image_tag tour.photos.first.key, height: 300, width: 400, crop: :fill  %>
-          <%# ###<img src="https://hips.hearstapps.com/hmg-prod/images/nature-quotes-landscape-1648265299.jpg" class="card-img-top" /> %>
           <div class="card-trip-infos">
             <div>
               <h3 class="card-trip-title"> <%= tour.city %> - <%= tour.name %></h3>
@@ -64,7 +63,11 @@
     <% end %>
   </div>
 </div>
-
+ <% flash.each do |type, message| %>
+    <div class="alert alert-<%= type == "notice" ? 'success' : 'danger' %>">
+      <%= message %>
+    </div>
+  <% end %>
 <script>
   function redirectToTour(url) {
     window.location.href = url;

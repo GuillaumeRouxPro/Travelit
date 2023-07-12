@@ -12,10 +12,15 @@ class BookingPolicy < ApplicationPolicy
     if user == record.tour.user
       check = false
     end
-    user.bookings.each do |userbook|
-      if record.tour.bookings.include?(userbook)
-        return false
+    if !record.tour.bookings.empty?
+      user.bookings.each do |userbook|
+        if record.tour.bookings.include?(userbook)
+          return false
+        end
       end
+    end
+    if user.nil?
+      check = false # if the user not logged in
     end
     check
   end
