@@ -34,7 +34,7 @@
                                   label_html: { class: "form-label text-secondary fw-bold" },
                                   input_html: { value: booking.start_date || Date.today, data: { controller: "flatpickr" } } %>
                     </div>
-                    <div class="col date-picker"style="display: none;">
+                    <div class="col date-picker">
                       <%= f.input :end_date, as: :string,
                                   wrapper_html: { class: "mb-4" },
                                   label_html: { class: "form-label text-secondary fw-bold" },
