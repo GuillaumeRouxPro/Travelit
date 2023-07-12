@@ -45,10 +45,13 @@ end
 puts 'Faux tours créés !'
 
 li_hobbies = [
-  Hobby.create!(name: "Football", icon: "link"), Hobby.create!(name: "Tennis", icon: "link"),
-  Hobby.create!(name: "Swimming", icon: "link"),
+  Hobby.create!(name: "Football", icon: "link"),
+  Hobby.create!(name: "Surf", icon: "link"),
   Hobby.create!(name: "Running", icon: "link"),
-  Hobby.create!(name: "Golf", icon: "link"),
+  Hobby.create!(name: "Art", icon: "link"),
+  Hobby.create!(name: "Food", icon: "link"),
+  Hobby.create!(name: "Cinema", icon: "link"),
+  Hobby.create!(name: "Music", icon: "link"),
   Hobby.create!(name: "Martial arts", icon: "link")
 ]
 

@@ -1,5 +1,6 @@
-
 <div class="container-fluid py-3">
+
+
 
   <div class="card mb-4 py">
     <div class="card-body">
@@ -10,51 +11,83 @@
         </div>
       <% else %>
         <% @bookings.each do |booking| %>
-          <div class="card mb-3">
-            <div class="card-body">
-              <p class="card-text">Tour name:
-              <%=  booking.tour.name  %></p>
-              <p class="card-text">Status:
-              <%=  booking.confirmation ? "Confirmed" : "Pending"  %></p>
-              <p class="card-text">Start date: <%= booking.start_date %></p>
-              <p class="card-text">End date:<%= booking.end_date %></p>
-              <button id="edit-button" class="btn btn-dark">Edit</button>
-              <div class="delelet-butt" style = "display: inline-block">
-                <%= simple_form_for :delete, url: booking_path(booking), method: :delete do |f| %>
-                  <%= f.button :submit, "Delete", class: "btn btn-dark" %>
-                <% end %>
-              </div>
-              <button id="edit-button" class="btn btn-dark">Message</button>
-              <%= simple_form_for :update , url: booking_path(booking), method: :put do |f|%>
-                <div class="row">
-                  <div class="col date-picker" style="display: none;">
-                    <%= f.input :start_date, as: :string,
-                                wrapper_html: { class: "mb-4" },
-                                label_html: { class: "form-label text-secondary fw-bold" },
-                                input_html: { value: booking.start_date || Date.today, data: { controller: "flatpickr" } } %>
-                  </div>
-                  <div class="col date-picker"style="display: none;">
-                    <%= f.input :end_date, as: :string,
-                                wrapper_html: { class: "mb-4" },
-                                label_html: { class: "form-label text-secondary fw-bold" },
-                                input_html: { value: booking.start_date || Date.today, data: { controller: "flatpickr" } } %>
-                  </div>
-                </div>
-                <div class="update-button" style = "display: none">
-                  <%= f.button :submit, "Change your date", class: "btn btn-primary" %>
-                </div>
+          <div class="mt-3 card-product">
+            <img src="https://www.experienceoxfordshire.org/wp-content/uploads/2019/02/blog-post-featured-image-template-15-1340x890.jpg" />
+            <div class="card-product-infos">
+              <h2>Tour name</h2>
+              <p><%=  booking.tour.name  %> - <%=  booking.tour.city  %></p>
+            </div>
+          </div>
+
+          <div class="mt-3 card-product">
+            <img src="https://cdn-production.checkfront.com/wp-content/uploads/2022/05/img_6273f0e0deafc.jpg" />
+            <div class="card-product-infos">
+              <h2>Guide</h2>
+              <p> <%=  booking.tour.user.first_name  %> <%=  booking.tour.user.last_name  %></p>
+            </div>
+          </div>
+
+          <button class="mt-3 custom-button-booking" disabled>
+            <%= booking.tour.price %> €
+          </button>
+
+          <h3 class="mt-3">Status</h3>
+          <button class="custom-button-appoval" disabled>
+            <%= booking.confirmation ? "Confirmed" : "Pending" %>
+          </button>
+
+          <div class="col justify-content-center">
+            <h3 class="mt-3">Dates for your booking</h3>
+            <div class="date-container">
+              <button class="custom-button-date" disabled>
+                <%= booking.start_date %>
+              </button>
+              <button class="custom-button-date" disabled>
+                <%= booking.end_date %>
+              </button>
+            </div>
+          </div>
+
+          <div class="m-3 text-center">
+            <button id="edit-button" class="btn btn-edit">Edit</button>
+            <div class="mt-3 delelet-butt" style="display: inline-block">
+              <%= simple_form_for :delete, url: booking_path(booking), method: :delete do |f| %>
+                <%= f.button :submit, "Delete", class: "btn btn-delete" %>
               <% end %>
-              <div class="cancel-button"  style = "display: none">
-                <button id="cancel-button" class= "btn btn-danger my-2 ">Cancel</button>
+            </div>
+            <button id="message-button" class="btn btn-message">Messages</button>
+          </div>
+
+          <%= simple_form_for :update , url: booking_path(booking), method: :put do |f|%>
+            <div class="row">
+              <div class="col date-picker" style="display: none;">
+                <%= f.input :start_date, as: :string,
+                            wrapper_html: { class: "mb-4" },
+                            label_html: { class: "form-label text-secondary fw-bold" },
+                            input_html: { value: booking.start_date || Date.today, data: { controller: "flatpickr" } } %>
+              </div>
+              <div class="col date-picker"style="display: none;">
+                <%= f.input :end_date, as: :string,
+                            wrapper_html: { class: "mb-4" },
+                            label_html: { class: "form-label text-secondary fw-bold" },
+                            input_html: { value: booking.start_date || Date.today, data: { controller: "flatpickr" } } %>
               </div>
             </div>
+            <div class="update-button" style="display: none">
+              <%= f.button :submit, "Change your date", class: "btn btn-primary" %>
+            </div>
+          <% end %>
 
+          <div class="cancel-button">
+            <button id="cancel-button" class="btn btn-danger my-2">Cancel</button>
           </div>
+
         <% end %>
       <% end %>
 
     </div>
   </div>
+
   <% flash.each do |type, message| %>
     <div class="alert alert-<%= type == "notice" ? 'success' : 'danger' %>">
       <%= message %>
@@ -63,28 +96,34 @@
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  var editButton = document.getElementById('edit-button');
-  var datePickers = document.querySelectorAll('.date-picker');
-  var showUpdateButton = document.querySelector('.update-button');
-  var showCancelButton = document.querySelector('.cancel-button');
+  document.addEventListener('DOMContentLoaded', function() {
+    var editButton = document.getElementById('edit-button');
+    var messageButton = document.getElementById('message-button');
+    var datePickers = document.querySelectorAll('.date-picker');
+    var showUpdateButton = document.querySelector('.update-button');
+    var showCancelButton = document.querySelector('.cancel-button');
 
-  editButton.addEventListener('click', function() {
-    datePickers.forEach(function(datePicker) {
-      datePicker.style.display = 'block';
+    editButton.addEventListener('click', function() {
+      datePickers.forEach(function(datePicker) {
+        datePicker.style.display = 'block';
+      });
+      editButton.style.display = 'none';
+      showUpdateButton.style.display = 'inline-block';
+      showCancelButton.style.display = 'inline-block';
     });
-    editButton.style.display = 'none';
-    showUpdateButton.style.display = 'inline-block';
-    showCancelButton.style.display = 'inline-block';
+
+    messageButton.addEventListener('click', function() {
+      // Code pour gérer l'action du bouton "Message"
+    });
+
     showCancelButton.addEventListener('click', function() {
       datePickers.forEach(function(datePicker) {
         datePicker.style.display = 'none';
       });
       showUpdateButton.style.display = 'none';
       editButton.style.display = 'inline-block';
-      showCancelButton.style.display = 'none'
+      showCancelButton.style.display = 'none';
     });
   });
-});
 </script>
 <%= render 'shared/footer' %>

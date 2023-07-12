@@ -1,0 +1,145 @@
+.card {
+  background-color: #f4f4f4;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  box-shadow: #F1C27B;
+}
+.card-body {
+  background-color: white;
+  border-radius: 6px;
+}
+
+.card-text-bookings {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 24px;
+}
+
+.fa-location-pin {
+  color: #F1C27B;
+  font-size: 32px;
+  padding-left: 10px;
+}
+
+.container-booking {
+font-size: 20px;
+font-family: 'Quattrocento Sans', sans-serif;
+}
+
+.card-product {
+  border-radius: 6px;
+  overflow: hidden;
+  height: 120px;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+}
+
+.card-product img {
+  height: 100%;
+  width: 120px;
+  object-fit: cover;
+  align-items: end;
+}
+
+.card-product h2 {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.card-product p {
+  font-size: 16px;
+  font-weight: 550;
+  line-height: 1.4;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 8px;
+}
+
+.card-product .card-product-infos {
+  padding: 16px;
+}
+
+.fa-person-hiking {
+  font-size: 20px;
+}
+
+.custom-button-booking {
+  color: white;
+  font-size: 18px;
+  padding: 10px 15px;
+  width: 100%;
+  background-color: #F1C27B;
+  border-color: #FFD89C;
+  border-radius: 6px;
+  border: 1px solid transparent;
+}
+
+.custom-button-appoval {
+  color: white;
+  font-size: 18px;
+  padding: 10px 5px;
+  width: 40%;
+  background-color: #FFD89C;
+  border-color: #F1C27B;
+  border-radius: 6px;
+  border: 1px solid transparent;
+}
+
+.custom-button-date {
+  color: white;
+  font-size: 18px;
+  padding: 10px 5px;
+  width: 40%;
+  background-color: #A2CDB0;
+  border-color: #85A389;
+  border-radius: 6px;
+  border: 1px solid transparent;
+}
+
+.date-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn-edit {
+  background-color: #85A389;
+  border-color: #A2CDB0;
+  color: #ffffff;
+  border-radius: 6px;
+  justify-content: center;
+}
+
+.btn-delete {
+  color: #ffffff;
+  background-color: #FFD89C;
+  border-color: #F1C27B;
+  border-radius: 6px;
+  justify-content: center;
+}
+
+.btn-message {
+  background-color: #85A389;
+  border-color: #A2CDB0;
+  color: #ffffff;
+  border-radius: 6px;
+  justify-content: center;
+}
+
+.update-button {
+  width: 100%;
+}
+
+.cancel-button {
+  width: 100%;
+}
+
+#cancel-button {
+  width: 100%;
+  color: #ffffff;
+  background-color: #FFD89C;
+  border-color: #F1C27B;
+  border-radius: 6px;
+}
