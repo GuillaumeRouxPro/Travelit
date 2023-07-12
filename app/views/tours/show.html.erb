@@ -67,8 +67,6 @@
 </div>
 
   <div class="row">
-<<<<<<< HEAD
-
     <% if policy(Booking.new(tour: @tour)).create? %>
       <div class="col text-center">
           <%= simple_form_for :booking, url: bookings_path, method: :post do |f| %>

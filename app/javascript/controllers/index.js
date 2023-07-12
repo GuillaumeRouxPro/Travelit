@@ -4,11 +4,14 @@
 
 import { application } from "./application"
 
-import TourController from "./tour_controller"
-application.register("tour", TourController)
+import BookingController from "./booking_controller"
+application.register("booking", BookingController)
 
 import FlatpickrController from "./flatpickr_controller"
 application.register("flatpickr", FlatpickrController)
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import TourController from "./tour_controller"
+application.register("tour", TourController)

@@ -10,7 +10,7 @@
         </div>
       <% else %>
         <% @bookings.each do |booking| %>
-          <div class="card mb-3" >
+          <div class="card mb-3" data-controller="booking">
             <div class="card-body">
               <p class="card-text">Tour name:
               <%=  booking.tour.name  %></p>
@@ -18,35 +18,38 @@
               <%=  booking.confirmation ? "Confirmed" : "Pending"  %></p>
               <p class="card-text">Start date: <%= booking.start_date %></p>
               <p class="card-text">End date:<%= booking.end_date %></p>
-              <button id="edit-button" class="btn btn-dark">Edit</button>
+              <button id="edit-button" class="btn btn-dark" data-action="click->booking#showDatepicker" >Edit</button>
               <div class="delelet-butt" style = "display: inline-block">
                 <%= simple_form_for :delete, url: booking_path(booking), method: :delete do |f| %>
                   <%= f.button :submit, "Delete", class: "btn btn-dark" %>
                 <% end %>
               </div>
               <button id="edit-button" class="btn btn-dark">Message</button>
-              <%= simple_form_for :update , url: booking_path(booking), method: :put do |f|%>
-                <div class="row">
-                  <div class="col date-picker" style="display: none;">
-                    <%= f.input :start_date, as: :string,
-                                wrapper_html: { class: "mb-4" },
-                                label_html: { class: "form-label text-secondary fw-bold" },
-                                input_html: { value: booking.start_date || Date.today, data: { controller: "flatpickr" } } %>
+              <div class="content-show" data-booking-target="showContent" style="display: none;">
+                  <%= simple_form_for :update , url: booking_path(booking), method: :put do |f|%>
+                  <div class="row">
+                    <div class="col date-picker">
+                      <%= f.input :start_date, as: :string,
+                                  wrapper_html: { class: "mb-4" },
+                                  label_html: { class: "form-label text-secondary fw-bold" },
+                                  input_html: { value: booking.start_date || Date.today, data: { controller: "flatpickr" } } %>
+                    </div>
+                    <div class="col date-picker"style="display: none;">
+                      <%= f.input :end_date, as: :string,
+                                  wrapper_html: { class: "mb-4" },
+                                  label_html: { class: "form-label text-secondary fw-bold" },
+                                  input_html: { value: booking.start_date || Date.today, data: { controller: "flatpickr" } } %>
+                    </div>
                   </div>
-                  <div class="col date-picker"style="display: none;">
-                    <%= f.input :end_date, as: :string,
-                                wrapper_html: { class: "mb-4" },
-                                label_html: { class: "form-label text-secondary fw-bold" },
-                                input_html: { value: booking.start_date || Date.today, data: { controller: "flatpickr" } } %>
+                  <div class="update-button" >
+                    <%= f.button :submit, "Change your date", class: "btn btn-primary" %>
                   </div>
+                <% end %>
+                <div class="cancel-button"  >
+                  <button id="cancel-button" class= "btn btn-danger my-2 " data-action="click->booking#cancel">Cancel</button>
                 </div>
-                <div class="update-button" style = "display: none">
-                  <%= f.button :submit, "Change your date", class: "btn btn-primary" %>
-                </div>
-              <% end %>
-              <div class="cancel-button"  style = "display: none">
-                <button id="cancel-button" class= "btn btn-danger my-2 ">Cancel</button>
               </div>
+
             </div>
 
           </div>
@@ -61,30 +64,4 @@
     </div>
   <% end %>
 </div>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  var editButton = document.getElementById('edit-button');
-  var datePickers = document.querySelectorAll('.date-picker');
-  var showUpdateButton = document.querySelector('.update-button');
-  var showCancelButton = document.querySelector('.cancel-button');
-
-  editButton.addEventListener('click', function() {
-    datePickers.forEach(function(datePicker) {
-      datePicker.style.display = 'block';
-    });
-    editButton.style.display = 'none';
-    showUpdateButton.style.display = 'inline-block';
-    showCancelButton.style.display = 'inline-block';
-    showCancelButton.addEventListener('click', function() {
-      datePickers.forEach(function(datePicker) {
-        datePicker.style.display = 'none';
-      });
-      showUpdateButton.style.display = 'none';
-      editButton.style.display = 'inline-block';
-      showCancelButton.style.display = 'none'
-    });
-  });
-});
-</script>
 <%= render 'shared/footer' %>
