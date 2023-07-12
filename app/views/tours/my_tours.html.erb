@@ -2,7 +2,7 @@
 
 <div class="container-fluid py-3">
 
-  <div class="card mb-4 py" >
+  <div class="card mb-2 py" >
     <div class="card-body">
       <h3 class="card-title tour-description-title">My Tours</h3>
       <% if  @tours.empty?%>
@@ -11,30 +11,33 @@
         </div>
       <% else %>
         <% @tours.each do |tour| %>
-          <div class="card mb-3">
+          <div class="card">
             <div class="card-body">
-              <p class="card-text">Tour name:
-              <%=  tour.name  %></p>
               <div class="card-body" data-controller="tour">
+                <div class="card-body">
+                  <p class="card-text-tour"><%=  tour.name  %></p>
+                </div>
+              <div class="card-body" data-controller="booking">
                 <% if tour.bookings.empty? %>
-                  <p> You have no booking for this <%= tour.name %></p>
+
+                  <p class="card-text-tour-book"> No bookings yet</p>
                 <% else %>
                   <div class="card-text">
                     <button id="view-button"
                     data-action="click->tour#showBookingList"
-                    class="btn btn-dark">View bookings</button>
+                    class="btn btn-dark btn btn-bookings-views">View bookings</button>
                   </div>
                   <div class="booking-list py-2"  style = "display: none" data-tour-target="bookingList">
                     <% tour.bookings.each do |booking| %>
                         <div class="booking-info py-2">
-                          <p class="card-text">Booker name:
-                          <strong><%=  booking.user.first_name  %></strong></p>
+                          <p class="card-text-infos">
+                          <strong><%=  booking.user.first_name  %>   <span>wants to join the tour</span></p>
                             <%= simple_form_for :update, url: accept_refuse_bookings_path do |f|%>
                               <%= f.input :booking_id, as: :hidden, input_html: { value: booking.id } %>
                               <% if booking.confirmation %>
                                 <div class="accepted-btn-view">
-                                  <p><strong>Booking Accepted </strong></p>
-                                  <%= f.button :submit, "Refuse to cancel", class: "btn btn-primary" %>
+                                  <p class="accepted-btn">Booking has been accepted </p>
+                                  <%= f.button :submit, "Refuse and cancel", class: "btn btn-primary" %>
                                 </div>
                               <% else %>
                                 <div class="buttons-display-inline">
