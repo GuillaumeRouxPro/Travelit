@@ -2,14 +2,12 @@ require 'date'
 
 class BookingsController < ApplicationController
   include Pundit
-  skip_before_action :authenticate_user!
 
   def index
     @bookings_as_traveler = policy_scope(Booking.where(user_id: current_user).order(:start_date))
     @bookings_as_guide = policy_scope(Booking.joins(:tour).where(tours: { user_id: current_user.id }).order(:start_date))
     @bookings = @bookings_as_traveler.to_a + @bookings_as_guide.to_a
     @review = Review.new
-
   end
 
   def new
@@ -34,7 +32,6 @@ class BookingsController < ApplicationController
     @booking.save
     @tour.bookings << @booking
     @tour.save
-
     redirect_to bookings_path, notice: "The reservation has been submitted !"
   end
 
@@ -65,13 +62,6 @@ class BookingsController < ApplicationController
     @booking.destroy
     redirect_back(fallback_location: bookings_path)
   end
-  # def destroy
-  #   @booking = Booking.find(params[:id])
-  #   authorize @booking
-  #   @tour = @booking.tour
-  #   @booking.destroy
-  #   redirect_back(fallback_location: tour_path(@booking.tour), notice: "La réservation a bien été annulée !")
-  # end
 
   def accept_refuse
     @booking = Booking.find(params[:update][:booking_id].to_i)
@@ -137,4 +127,5 @@ class BookingsController < ApplicationController
   def booking_params
     params.require(:update).permit(:start_date, :end_date)
   end
+
 end

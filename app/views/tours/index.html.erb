@@ -3,10 +3,8 @@
 <!-- app/views/tours/index.html.erb -->
 
 
+<%= render 'shared/banner' %>
 
-
-
-</div>
 
 <div class="p-3 container-fluid">
   <div class="row">
@@ -70,7 +68,11 @@
     <% end %>
   </div>
 </div>
-
+ <% flash.each do |type, message| %>
+    <div class="alert alert-<%= type == "notice" ? 'success' : 'danger' %>">
+      <%= message %>
+    </div>
+  <% end %>
 <script>
   function redirectToTour(url) {
     window.location.href = url;

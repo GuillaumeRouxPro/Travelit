@@ -36,6 +36,18 @@ images = [
   "https://d2rdhxfof4qmbb.cloudfront.net/wp-content/uploads/20180221131008/iStock-627935066.jpg",
   "https://i.insider.com/55f892c2bd86ef1a008ba8c9?width=1136&format=jpeg"
 ]
+li_hobbies = [
+  Hobby.create!(name: "Football", icon: "link"),
+  Hobby.create!(name: "Surf", icon: "link"),
+  Hobby.create!(name: "Running", icon: "link"),
+  Hobby.create!(name: "Art", icon: "link"),
+  Hobby.create!(name: "Food", icon: "link"),
+  Hobby.create!(name: "Cinema", icon: "link"),
+  Hobby.create!(name: "Music", icon: "link"),
+  Hobby.create!(name: "Martial arts", icon: "link")
+]
+
+puts 'Faux hobbies crée !'
 
 i = 0
 10.times do
@@ -49,26 +61,19 @@ i = 0
   )
   file = URI.open(images[i])
   tour.photos.attach(io: file, filename: 'photo.jpg')
-
   tour.save!
+  num_rand = rand(1..5)
+  selected_hobbies = li_hobbies.sample(num_rand)
+  selected_hobbies.each do |hobby|
+    tour.user.user_hobbies << UserHobby.create!(user_id: tour.user.id, tour_id: tour.id, hobby_id: hobby.id)
+  end
   i += 1
   puts i
 end
 
 puts 'Faux tours créés !'
 
-li_hobbies = [
-  Hobby.create!(name: "Football", icon: "link"),
-  Hobby.create!(name: "Surf", icon: "link"),
-  Hobby.create!(name: "Running", icon: "link"),
-  Hobby.create!(name: "Art", icon: "link"),
-  Hobby.create!(name: "Food", icon: "link"),
-  Hobby.create!(name: "Cinema", icon: "link"),
-  Hobby.create!(name: "Music", icon: "link"),
-  Hobby.create!(name: "Martial arts", icon: "link")
-]
 
-puts 'Faux hobbies crée !'
 # 6.times do
 #   User_Hobby.create!(
 #     name: Faker::Lorem.word,

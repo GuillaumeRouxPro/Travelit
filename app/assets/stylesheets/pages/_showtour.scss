@@ -73,6 +73,13 @@
 .card-body {
   border-radius: 10px;
   border: 1px solid #dddddd00;
+
+  .list-group {
+    li {
+      border-radius: 10px;
+      text-align: center;
+    }
+  }
 }
 
 .text-bold {
