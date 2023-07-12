@@ -1,6 +1,10 @@
 
-<div class="container-fluid">
-  <div class="pt-3" class="row">
+<div class="container-fluid py-4">
+
+  <div class="card-trip card mb-4">
+    <%= cl_image_tag @tour.photos.first.key, height: 300, width: 400, crop: :fill  %>
+  </div>
+  <div class="pt-1" class="row">
     <div class="col-md-4">
       <div class="card mb-4">
         <div class="card-body">
