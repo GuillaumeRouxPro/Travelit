@@ -7,8 +7,6 @@ class Booking < ApplicationRecord
   attribute :start_date, :date
   attribute :end_date, :date
 
-  validate :end_date_must_be_after_start_date, :start_date_must_be_after_today
-
   private
 
   def end_date_must_be_after_start_date

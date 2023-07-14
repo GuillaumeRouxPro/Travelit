@@ -10,6 +10,54 @@
 @import "search-form-guide";
 
 
+.card-trip-infos {
+  border-radius: 10px;
+}
+
+.title-hobbies {
+  font-size: 18px;
+  font-style: Work Sans;
+  letter-spacing: 1px;
+}
+.tag-selector {
+  position: absolute;
+  transform: scale(0);
+}
+
+.tag-selector + label {
+  cursor: pointer;
+  display: inline-block;
+  font-size: 18px;
+  border-radius: 50rem;
+  padding: 0.3rem 1rem;
+  background-color: #ffffff;
+  color: #525050;
+  border: 1px solid #525050;
+  margin-bottom: 0.4rem;
+  width: max-content;
+}
+
+.tag-selector:checked + label {
+  background-color: #F1C27B;
+  color: #ffff;
+  border: 1px solid #ffff;
+  font-weight: 300;
+}
+
+.form-check-3 {
+  display: flex;
+  grid-template-columns: repeat(2, 2fr);
+  grid-gap: 5px;
+}
+
+
+.label {
+  font-size: 14px;
+}
+
+.form-label {
+  font-size: 18px;
+}
 
 .btn-primary {
   background-color: #A2CDB0;;
@@ -69,6 +117,6 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Montserrat', sans-serif;
 }
 
-p, a, li, input, label {
+p, a, li {
   font-family: 'Quattrocento Sans', sans-serif;
 }

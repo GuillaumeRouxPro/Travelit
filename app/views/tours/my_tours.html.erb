@@ -30,8 +30,7 @@
                   <div class="booking-list py-2"  style = "display: none" data-tour-target="bookingList">
                     <% tour.bookings.each do |booking| %>
                         <div class="booking-info py-2">
-                          <p class="card-text-infos">
-                          <strong><%=  booking.user.first_name  %>   <span>wants to join the tour</span></p>
+
                             <%= simple_form_for :update, url: accept_refuse_bookings_path do |f|%>
                               <%= f.input :booking_id, as: :hidden, input_html: { value: booking.id } %>
                               <% if booking.confirmation %>
@@ -40,6 +39,8 @@
                                   <%= f.button :submit, "Refuse and cancel", class: "btn btn-primary" %>
                                 </div>
                               <% else %>
+                              <p class="card-text-infos">
+                              <strong><%=  booking.user.first_name  %>   <span>wants to join the tour</span></p>
                                 <div class="buttons-display-inline">
                                   <%= f.button :submit, "Accept", class: "btn btn-primary" %>
                                   <%= f.button :submit, "Refuse", class: "btn btn-second" %>

@@ -32,6 +32,15 @@
   font-weight: bold;
 }
 
+
+
+.form-label {
+  font-size: 24px;
+}
+
+
+
+
 .tag-selector {
   position: absolute;
   transform: scale(0);
@@ -40,14 +49,13 @@
 .label-ville,
 .label-number_of_travlers,
 .label-hobby {
-  font-family: 'Roboto Slab', serif;
-  letter-spacing: 0.5px;
+  font-size: 42px;
 }
 
 .tag-selector + label {
   cursor: pointer;
   display: inline-block;
-  font-size: 0.6rem;
+  font-size: 18px;
   border-radius: 50rem;
   padding: 0.3rem 1rem;
   background-color: #ffffff;
@@ -90,10 +98,6 @@
   display: inline-block;
 }
 
-.form-label-title {
-  font-weight: bold;
-  font-size: 1.2rem;
-}
 
 .custom-select {
   font-size: 50px;
@@ -108,7 +112,7 @@
 
 .custom-select:focus {
   outline: none;
-  border-color: #7e73ff; /* Couleur de bordure lorsqu'elle est sélectionnée */
+  border-color: #747474; /* Couleur de bordure lorsqu'elle est sélectionnée */
   box-shadow: 0 0 0 2px rgba(126, 115, 255, 0.2); /* Effet d'ombre lorsqu'elle est sélectionnée */
 }
 
@@ -119,4 +123,31 @@
 
 .custom-select:hover {
   border-color: #999; /* Couleur de bordure au survol */
+}
+
+
+
+.form-control-search-guide{
+  padding : 10px 20px;
+  color: white;
+  width: 100%;
+  border-radius: 50rem;
+  border: 1px solid #FFD89C;
+  background-color: #F1C27B;
+  display: inline;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-bar-guide-v3 {
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.search-bar-guide-v3 input[type="text"]::placeholder {
+  color: white;
+  text-align: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 18px;
 }

@@ -28,10 +28,8 @@
             <ul class="pb-2 pt-2 dropdown-menu mx-auto custom-dropdown-menu" aria-labelledby="travellerDropdown">
               <li><%= link_to "Find a tour", home_search_path, class: "pb-2 pt-2 dropdown-item mx-auto custom-dropdown-item" %></li>
               <li><%= link_to "My bookings", bookings_path, class: "pb-2 pt-2 dropdown-item mx-auto custom-dropdown-item" %></li>
+              <li><%= link_to "Previous bookings", new_review_path, class: "pb-2 pt-2 dropdown-item mx-auto custom-dropdown-item" %></li>
             </ul>
-          </li>
-          <li class="pb-2 pt-2 nav-item dropdown mx-auto">
-            <%= link_to "Messages",  "#", class: "style-item dropdown-item" %>
           </li>
           <li class="pb-2 pt-2 nav-item dropdown mx-auto">
             <%= link_to "Log out",  destroy_user_session_path, class: "style-item dropdown-item", data: {turbo_method: :delete} %>

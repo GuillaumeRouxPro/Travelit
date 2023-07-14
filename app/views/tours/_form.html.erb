@@ -8,9 +8,9 @@
     <%= f.input :description, label: 'Description' %>
     <%= f.input :city, label: 'City'%>
     <%= f.input :price, label: 'Price' %>
-    <%= f.input :number_of_travlers, label: 'Maximum number of travellers for a tour' %>
+    <%= f.input :number_of_travlers, label: 'Maximum number of travellers' %>
 
-      <button type="button" class="pt-2 btn btn-primary-search" id="add_hobby_button-1">Add to Hobbies</button>
+
 
 
     <!-- Initially hide the new hobby form fields -->
@@ -20,17 +20,25 @@
         <%= hobby.input :icon, label: "Icon Name" %>
       <% end %>
     </div>
-    <% @hobby.each do |hobby| %>
-      <div class="pt-3 pb-3 form-check">
-        <%= f.check_box :hobby_ids,  { multiple: true, class: "form-check-input" } , hobby.id, nil %>
-        <%= f.label :hobby_ids, hobby.name, class: "form-check-label" %>
-      </div>
-    <% end %>
+
+<p class="pt-3 title-hobbies">Choose your hobbies</p>
+   <% @hobby.each do |hobby| %>
+  <div class="form-check-3">
+    <%= check_box_tag "tour[hobby_ids][]", hobby.id, false, id: "tour_hobby_#{hobby.id}", class: "tag-selector" %>
+    <%= label_tag "tour_hobby_#{hobby.id}", hobby.name, class: "form-check-label custom-checkbox-label tag-label" %>
+  </div>
+  <% end %>
+
+  <div class="search-bar-guide-v3">
+      <input type="text" class="mt-2 form-control-search-guide" placeholder="Search your hobby..." />
+  </div>
 
     <%= f.input :photos, as: :file, input_html: { multiple: true } %>
-    <%= f.submit label, class: "mb-5 btn btn-primary" %>
+    <%= f.submit label, class: "mt-5 mb-5 btn btn-primary" %>
   <% end %>
 </div>
+
+
 
 <script>
 

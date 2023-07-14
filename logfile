@@ -92,3 +92,10 @@
 2023-07-10 16:21:17.989 CEST [2049] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
 2023-07-10 16:21:17.994 CEST [2050] LOG:  database system was shut down at 2023-07-10 16:21:14 CEST
 2023-07-10 16:21:17.997 CEST [2049] LOG:  database system is ready to accept connections
+2023-07-14 14:39:23.298 CEST [9308] LOG:  starting PostgreSQL 14.8 (Homebrew) on x86_64-apple-darwin22.4.0, compiled by Apple clang version 14.0.3 (clang-1403.0.22.14.1), 64-bit
+2023-07-14 14:39:23.299 CEST [9308] LOG:  listening on IPv6 address "::1", port 5432
+2023-07-14 14:39:23.299 CEST [9308] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2023-07-14 14:39:23.300 CEST [9308] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2023-07-14 14:39:23.304 CEST [9309] LOG:  database system was shut down at 2023-07-14 14:39:18 CEST
+2023-07-14 14:39:23.307 CEST [9308] LOG:  database system is ready to accept connections
+2023-07-14 14:39:26.842 CEST [9328] FATAL:  database "Travelit_development" does not exist
