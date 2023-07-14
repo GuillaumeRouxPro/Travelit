@@ -20,21 +20,24 @@
         <%= hobby.input :icon, label: "Icon Name" %>
       <% end %>
     </div>
-    <% @hobby.each do |hobby| %>
-      <div class="pt-3 pb-3 form-check">
-        <%= f.check_box :hobby_ids,  { multiple: true, class: "form-check-input" } , hobby.id, nil %>
-        <%= f.label :hobby_ids, hobby.name, class: "form-check-label" %>
-      </div>
-    <% end %>
 
-    <div class="search-bar-guide-v3">
-      <input type="text" class="form-control-search-guide" placeholder="Search your hobby..." />
-    </div>
+<p class="pt-3 title-hobbies">Choose your hobbies</p>
+   <% @hobby.each do |hobby| %>
+  <div class="form-check-3">
+    <%= check_box_tag "tour[hobby_ids][]", hobby.id, false, id: "tour_hobby_#{hobby.id}", class: "tag-selector" %>
+    <%= label_tag "tour_hobby_#{hobby.id}", hobby.name, class: "form-check-label custom-checkbox-label tag-label" %>
+  </div>
+  <% end %>
+
+  <div class="search-bar-guide-v3">
+      <input type="text" class="mt-2 form-control-search-guide" placeholder="Search your hobby..." />
+  </div>
 
     <%= f.input :photos, as: :file, input_html: { multiple: true } %>
-    <%= f.submit label, class: "mb-5 btn btn-primary" %>
+    <%= f.submit label, class: "mt-5 mb-5 btn btn-primary" %>
   <% end %>
 </div>
+
 
 
 <script>
