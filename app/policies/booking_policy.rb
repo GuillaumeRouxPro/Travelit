@@ -38,9 +38,8 @@ class BookingPolicy < ApplicationPolicy
   end
 
   def destroy?
-    user == record.user
+    record.user == user # Autoriser la suppression si l'utilisateur est le propriétaire de la réservation
   end
-
 
   def accept_refuse?
     true
