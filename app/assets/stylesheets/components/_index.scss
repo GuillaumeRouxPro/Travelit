@@ -10,6 +10,13 @@
 @import "search-form-guide";
 
 
+.label {
+  font-size: 14px;
+}
+
+.form-label {
+  font-size: 18px;
+}
 
 .btn-primary {
   background-color: #A2CDB0;;
@@ -69,6 +76,6 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Montserrat', sans-serif;
 }
 
-p, a, li, input, label {
+p, a, li {
   font-family: 'Quattrocento Sans', sans-serif;
 }

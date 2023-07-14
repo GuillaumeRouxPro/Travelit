@@ -8,9 +8,9 @@
     <%= f.input :description, label: 'Description' %>
     <%= f.input :city, label: 'City'%>
     <%= f.input :price, label: 'Price' %>
-    <%= f.input :number_of_travlers, label: 'Maximum number of travellers for a tour' %>
+    <%= f.input :number_of_travlers, label: 'Maximum number of travellers' %>
 
-      <button type="button" class="pt-2 btn btn-primary-search" id="add_hobby_button-1">Add to Hobbies</button>
+
 
 
     <!-- Initially hide the new hobby form fields -->
@@ -27,10 +27,15 @@
       </div>
     <% end %>
 
+    <div class="search-bar-guide-v3">
+      <input type="text" class="form-control-search-guide" placeholder="Search your hobby..." />
+    </div>
+
     <%= f.input :photos, as: :file, input_html: { multiple: true } %>
     <%= f.submit label, class: "mb-5 btn btn-primary" %>
   <% end %>
 </div>
+
 
 <script>
 

@@ -2,10 +2,10 @@
 <div class="container">
   <%= simple_form_for "", url: home_search_path, method: :get do |f| %>
     <div class="form-group py-3">
-      <%= f.input :city,  label: "Ville  " ,class: "form-control" %>
+      <%= f.input :city,  label: "City" ,class: "form-control" %>
     </div>
     <div class="form-group py-3">
-      <%= f.label :number_of_travlers, "Number of travellers" %>
+      <%= f.label :number_of_travlers, "Number of traveller(s)" %>
       <%= f.select :number_of_travlers, options_for_select(1..15), {class: "form-control" } %>
     </div>
     <div class="form-group py-3">
@@ -18,7 +18,9 @@
             </div>
           <% end %>
       </div>
-
+    </div>
+    <div class="search-bar-guide-v3">
+      <input type="text" class="form-control-search-guide" placeholder="Search your hobby..." />
     </div>
 
     <div class="row">
@@ -41,3 +43,5 @@
   <% end %>
 
 </div>
+
+<%= render 'shared/footer' %>
