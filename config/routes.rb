@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "tours#index"
 
+
   post '/become_guide', to: 'users#become_guide', as: 'become_guide'
 
 

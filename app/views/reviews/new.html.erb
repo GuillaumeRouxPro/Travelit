@@ -1,13 +1,21 @@
-<%= render 'shared/navbar' %>
-
 <div class="pt-3 container-fluid">
-<%= simple_form_for(@review) do |f| %>
-  <%= f.input :rating, label: "Choose between 1 and 5", collection: 1..5, include_blank: false %>
-  <%= f.input :comment, label: "Comment" %>
-  <%= f.submit "Create my review", class: "btn btn-primary" %>
-<% end %>
+  <div class="card-trip">
+    <img src="https://img.redbull.com/images/c_limit,w_1500,h_1000,f_auto,q_auto/redbullcom/2020/7/14/ycdaeixlxbnocvx3tere/surf-bali-2020-bronson-meydi" />
+    <div class="card-trip-infos">
+      <div>
+        <h2>Surf in Bali - Wayan</h2>
+        <p>Come discover Bali like a pro surfer</p>
+      </div>
+      <h2 class="card-trip-pricing">100 €</h2>
+    </div>
+  </div>
 
+  <h3 class="pt-5">Rate your tour with Wayan</h3>
+  <%= simple_form_for(@review) do |f| %>
+    <%= f.input :rating, label: "Choose between 1 and 5", collection: 1..5, include_blank: false %>
+    <%= f.input :comment, label: "Comment" %>
+    <%= link_to "Create my review", root_path, class: "btn btn-primary" %>
+  <% end %>
 </div>
-
 
 <%= render 'shared/footer' %>
